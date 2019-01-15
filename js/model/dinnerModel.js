@@ -3,45 +3,73 @@ var DinnerModel = function() {
  
 	//TODO Lab 1 implement the data structure that will hold number of guest
 	// and selected dishes for the dinner menu
-
+	var numberOfGuests = 3;
+	var selectedDishes = [];
 
 	this.setNumberOfGuests = function(num) {
-		//TODO Lab 1
+		numberOfGuests = num;
 	}
 	
 	this.getNumberOfGuests = function() {
-		//TODO Lab 1
+		return numberOfGuests;
 	}
 
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = function(type) {
-		//TODO Lab 1
+		return selectedDishes.find(function(element) {
+			return element.type === type;
+		});
 	}
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
-		//TODO Lab 1
+		return selectedDishes;
 	}
 
 	//Returns all ingredients for all the dishes on the menu.
 	this.getAllIngredients = function() {
-		//TODO Lab 1
+		var allIngredients = [];
+		selectedDishes.map(function(dish) {
+			allIngredients.concat(dish.ingredients);
+		});
+		return allIngredients;
 	}
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
-		//TODO Lab 1
+		var allIngredients = this.getAllIngredients();
+		var totalPrice = 0;
+		allIngredients.map(function(ingredient) {
+			totalPrice += ingredient.price;
+		});
+		return totalPrice * numberOfGuests;
 	}
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-		//TODO Lab 1 
+
+		var dishToAdd = dishes.find(function(dish) {
+			return dish.id === id;
+		});
+
+
+		var existingDishWithSameType = selectedDishes.find(function(dish) {
+			return dish.type === dishToAdd.type;
+		});
+
+		if(existingDishWithSameType){
+			this.removeDishFromMenu(existingDishWithSameType.id);
+		}
+
+		selectedDishes.push(dishToAdd);
 	}
 
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
-		//TODO Lab 1
+		selectedDishes = selectedDishes.filter(function(value, index, arr) {
+			return value.id !== id;
+		})
 	}
 
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
