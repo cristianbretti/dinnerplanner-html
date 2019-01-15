@@ -5,6 +5,8 @@ $(function() {
 	// And create the instance of ExampleView
 	var exampleView = new ExampleView($("#exampleView"));
 
+	var homeView = new HomeView($("#homeView"));
+
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to
 	 * use the $('someSelector') to search for elements in the whole HTML.
