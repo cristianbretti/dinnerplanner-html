@@ -30,7 +30,7 @@ var DinnerModel = function() {
 	this.getAllIngredients = function() {
 		var allIngredients = [];
 		selectedDishes.map(function(dish) {
-			allIngredients.concat(dish.ingredients);
+			allIngredients = allIngredients.concat(dish.ingredients);
 		});
 		return allIngredients;
 	}
