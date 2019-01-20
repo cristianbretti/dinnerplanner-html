@@ -45,6 +45,10 @@
     justify-content: space-around;
 }
 
+.justify-between {
+    justify-content: space-between;
+}
+
 .algin-center {
     align-content: center;
 }
@@ -74,3 +78,19 @@
     border-color: black;
     border-style: solid 
 }
+
+@media screen and (max-width: 700px) {
+    .body {
+        flex-direction: column;
+    }
+
+    .sidebarContent {
+        display: none;
+    }
+  }
+
+  @media screen and (min-width: 700px) {
+    .only-small {
+        display: none;
+    }
+  }

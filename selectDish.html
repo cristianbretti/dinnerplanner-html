@@ -8,8 +8,8 @@
 
     <!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/style.css">
-
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="import" href="sidebar.html">
   </head>
   <body>
 	<div class="h-screen">
@@ -19,9 +19,38 @@
         </h1>
         <!-- Body -->
 		<div id="selectDishView" class="body flex flex-row justify-center">
-            <div id="sideBar" class="flex-1 border">
-                
-            </div>
+            <!-- Sidebar -->
+            
+            <div id="sideBar" class="flex-1 border flex flex-col">
+                    <div id="sideBarHeaderContainer" class="flex flex-row">
+                        <h3 class="flex-3">
+                            My Dinner
+                        </h3>
+                        <!-- The burger menu -->
+                        <button type="button" class="flex-1 btn btn-default btn-sm only-small">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </div>
+                    <div id="sidbarContentContainer" class="sidebarContent flex flex-col">
+                        <div id="numberOfPeopleSelectorContainer" class="flex flex-row">
+                            <h4>People</h4>
+                            <input id="numberOfPeopleInput" type="number" step="1" value="0"/>
+                        </div>
+                        <div id="selectedDishesContainer" class="flex flex-col">
+                            <div id="selectedDishesHeader" class="flex flex-row border justify-between bg-success">
+                                <div>
+                                    Dish name
+                                </div>
+                                <div>
+                                    Cost
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+        
+            <!-- Main part -->
             <div id="findDishContainer" class="flex-3 border flex-col flex">
                 <div id="searchContainer" class="container w-100 flex-1 border">
                     <div class="row">
