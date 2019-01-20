@@ -45,6 +45,20 @@ var DinnerModel = function() {
 		return totalPrice * numberOfGuests;
 	}
 
+	//Returns the price of the dish times number of guests
+	/**
+	 * @param {Number} id id of the disdh 
+	 * @returns {Number} the price of the dish times number of guest
+	 */
+	this.getDishPrice = function(id) {
+		var dish = this.getDish(id)
+		var price = 0;
+		dish.ingredients.map(ingredient => {
+			price += ingredient.price;
+		})
+		return price * numberOfGuests;
+	}	
+
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
