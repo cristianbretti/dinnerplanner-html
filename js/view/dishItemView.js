@@ -7,14 +7,17 @@ var DishItemView = function (container, dish) {
     var image = $('<img />').attr({
         'id': 'myImage'+dish.id,
         'src': 'images/' + dish.image,
-        'width': 100
+        'class': 'h-full w-full',
     });
 
     var imageText = $('<div/>').attr({
-        'class': '',
+        'class': 'imageText border border-black text-center truncate text-sm',
     }).text(dish.name);
 
-    var imageContainer = $('<div />', {"class": 'text-center',});
-    imageContainer.append(image, imageText);
-    container.append(imageContainer);
+    var imageContainer = $('<div />', {"class": 'imageContainer flex justify-center border border-black',});
+    imageContainer.append(image);
+    var wrapper = $('<div />', {"class": 'smallImageContainer p-6',});
+    wrapper.append(imageContainer, imageText);
+    
+    container.append(wrapper);
 }

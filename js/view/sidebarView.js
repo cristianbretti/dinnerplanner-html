@@ -18,22 +18,17 @@ var SidebarView = function (container, model) {
 
     selectedDishes.map(function(dish) {
         var oneSelectedDishContainer = $('<div/>').attr({
-            'class': 'flex flex-row justify-between bg-primary margin-2',
+            'class': 'flex justify-between bg-orange m-1 p-1 border border-black',
         })
 
-        var nameOfDish = $('<div/>').attr('class', "padding-2 flex-1").html(dish.name)
-        var priceOfDish = $('<div/>').attr('class', "padding-2 flex-1 text-right").html(model.getDishPrice(dish.id))
+        var nameOfDish = $('<div/>').attr('class', "").html(dish.name)
+        var priceOfDish = $('<div/>').attr('class', "").html(model.getDishPrice(dish.id))
 
         oneSelectedDishContainer.append(nameOfDish, priceOfDish);
         selectedDishesNameAndPriceContainer.append(oneSelectedDishContainer);
     });
 
     //Total price on left panel
-    var totalPriceContainer = $('<div/>').attr({
-        'class': 'flex flex-row justify-between margin-2',
-    })
-    var totalPrice =  $('<div/>').attr('class', "padding-2 flex-1").html(model.getTotalMenuPrice());
-    totalPriceContainer.append(totalPrice);
-    selectedDishesNameAndPriceContainer.append(totalPriceContainer);
-
+    var totalPriceContainer = container.find("#totalCost");
+    totalPriceContainer.html("SEK " + model.getTotalMenuPrice());
 }
