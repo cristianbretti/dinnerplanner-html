@@ -62,20 +62,31 @@
             </div>
         
             <!-- Main part -->
-            <div id="dishDetailsContainer" class="flex-3 border flex-col flex">
-                <div id="dishOverviewAndIngredientsContainer" class="flex flex-row">
-                    <div id="dishOverviewContainer" class="flex flex-col w-50">
-                        <div id="dishName"></div>
-                        <img id="dishImage"/>
-                        <div id="dishDescription"></div>
-                        <button type="button" class="btn btn-default btn-sm">
+            <div id="dishDetailsContainer" class="flex-3 border">
+                <div class="flex flex-wrap">
+                    <div id="dishOverviewContainer" class="flex-1 p-6">
+                        <div id="dishName" class="text-xl font-bold pb-3"></div>
+                        <div class="mb-2"><img id="dishImage"/></div>
+                        <div id="dishType" class="mb-2"></div>
+                        <button type="button" class="border bg-orange p-2 rounded">
                             Back to search
                         </button>
                     </div>
-                    <div id="dishRecipeContainer" class="w-50 bg-success flex flex-col">
-                        
+                    <div class="border-2 border-black bg-orange-lighter flex-1 flex flex-col m-6">
+                        <div id="dishRecipeContainer" class="flex-1">
+                    
+                        </div>
+                        <div class="m-2 border-black border"></div>
+                        <div class="flex justify-between p-2">
+                            <button class="p-2 bg-orange border border-black">Add to menu</button>
+                            <div id="totalCost" class="pr-2">
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="mt-8 text-xl font-bold px-6">PREPARATIONS:</div>
+                <div id="dishDescription" class="px-6"></div>
             </div>
 		</div>
 	</div>

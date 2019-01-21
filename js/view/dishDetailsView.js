@@ -17,11 +17,15 @@ var DishDetailsView = function (container, model) {
 
     //Set name
     var nameOfDish = container.find("#dishName");
-    nameOfDish.html(selectedDish.name);
+    nameOfDish.html(selectedDish.name.toUpperCase());
 
     //Set image
     var dishImage = container.find('#dishImage');
     dishImage.attr("src", "images/" +  selectedDish.image);
+
+    // Set type
+    var dishType = container.find('#dishType');
+    dishType.html("type: " + selectedDish.type);
 
     //Set description
     var dishDescription = container.find('#dishDescription');
@@ -29,32 +33,32 @@ var DishDetailsView = function (container, model) {
 
     //Set Ingredients
     var dishRecipe = container.find('#dishRecipeContainer');
-    dishRecipe.append('<div>Ingredients for ' + numberOfGuests + ' people</div>')
+    var header = $('<div />').attr({
+        'class': 'text-center font-bold py-2',
+    }).html("INGREDIENTS FOR " + numberOfGuests + " PEOPLE");
+    dishRecipe.append(header);
+    dishRecipe.append($('<div/>').attr({'class': 'border border-black m-2'}))
+
+    var totalCost = 0;
     selectedDish.ingredients.map(function(ingredient) {
 
-        var oneIngredientContainer = $('<div/>').attr({
-            'class': 'flex flex-row ',
-        })
+        var oneIngredientContainer = $('<div/>').attr({'class': 'flex px-4',});
 
-        var quantity = $('<div/>').html(ingredient.quantity)
-        var unit = $('<div/>').html(ingredient.unit)
-        var name = $('<div/>').html(ingredient.name)
-        var nameAndQuantityContainer = $('<div/>').attr({
-            'class': 'flex flex-row justify-around flex-2',
-        }).append(quantity, unit, name)
+        var quantity = $('<div/>').attr({'class': 'flex-1',}).html(ingredient.quantity + " " + ingredient.unit);
+        var name = $('<div/>').attr({'class': 'flex-2',}).html(ingredient.name)
+        var price = $('<div/>').attr({'class': 'flex-1 text-right pr-1',}).html(ingredient.price);
+        var currency = $('<div/>').html(" SEK");
 
-        var price = $('<div/>').html(ingredient.price)
-        var currency = $('<div/>').html("SEK")
-        var priceAndCurrencyContainer = $('<div/>').attr({
-            'class': 'flex flex-row justify-around flex-1',
-        }).append(price, currency)
+        totalCost += ingredient.price;
 
-        oneIngredientContainer.append(nameAndQuantityContainer, priceAndCurrencyContainer)
-        
+        oneIngredientContainer.append(quantity, name, price, currency);
         dishRecipe.append(oneIngredientContainer);
 
     })
 
+    // Set total cost
+    var dishDescription = container.find('#totalCost');
+    dishDescription.html(totalCost + " SEK");
 	
 }
  
