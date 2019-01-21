@@ -4,6 +4,12 @@
  * @param {Object} model - the reference to the Dinner Model.
  */ 
 var SidebarView = function (container, model) {  
+
+    // Add functionality to hamburger
+    $("#hamburgerToggle").click(function() {
+        $('#sidebarContent').toggle();
+    })
+
     //Number of guests input on left panel
     numberOfGuestsInput = container.find('#numberOfGuestsInput');
     numberOfGuestsInput.attr('value', model.getNumberOfGuests());
