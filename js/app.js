@@ -8,6 +8,7 @@ $(function() {
 	var homeView = new HomeView($("#homeView"));
 	var selectDishView = new SelectDishView($("#selectDishView"), model);
 	var dishDetailsView = new DishDetailsView($("#dishDetailsView"), model)
+	var dinnerOverviewView = new DinnerOverviewView($('#dinnerOverviewView'), model);
 
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to
