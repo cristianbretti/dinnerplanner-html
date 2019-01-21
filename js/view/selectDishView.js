@@ -42,7 +42,7 @@ var SelectDishView = function (container, model) {
     model.addDishToMenu(101);
 
     //Selected dishes in left panel
-    var selectedDishesContainer = container.find('#selectedDishesContainer');
+    var selectedDishesNameAndPriceContainer = container.find('#selectedDishesNameAndPriceContainer');
     var selectedDishes = model.getFullMenu();
 
     selectedDishes.map(function(dish) {
@@ -54,7 +54,7 @@ var SelectDishView = function (container, model) {
         var priceOfDish = $('<div/>').attr('class', "padding-2 flex-1 text-right").html(model.getDishPrice(dish.id))
 
         oneSelectedDishContainer.append(nameOfDish, priceOfDish);
-        selectedDishesContainer.append(oneSelectedDishContainer);
+        selectedDishesNameAndPriceContainer.append(oneSelectedDishContainer);
     });
 
     //Total price on left panel
@@ -63,7 +63,7 @@ var SelectDishView = function (container, model) {
     })
     var totalPrice =  $('<div/>').attr('class', "padding-2 flex-1").html(model.getTotalMenuPrice());
     totalPriceContainer.append(totalPrice);
-    selectedDishesContainer.append(totalPriceContainer);
+    selectedDishesNameAndPriceContainer.append(totalPriceContainer);
 
 	
 }
