@@ -7,8 +7,10 @@
     <title>Dinner planner</title>
 
     <!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+
   </head>
   <body>
 	<div class="h-screen">
@@ -17,21 +19,27 @@
 				Dinner planner
         </h1>
         <!-- Body -->
-		<div id="dinnerOverviewView" class="body flex flex-col">
-            <div id="numberOfGuestsAndButtonContainer" class="flex flex-row justify-around">
-                <div id="numberOfGuestsContainers">
-                    My Dinner: 3 Guests
+		<div id="dinnerOverviewView" class="body">
+            <!-- Back and Edit panel -->
+            <div id="backAndEditContainer" class="flex border-b">
+                <div class="flex-1 flex">
+                    <div>
+                        My dinner:&nbsp;
+                    </div>
+                    <div id="numberOfGuests"></div>
+                    <div>
+                        &nbsp;people
+                    </div>
                 </div>
-                <div id="buttonContainer">
-                    <button class="btn btn-primary">
-                        Create new dinner
-                    </button>
+                <div>
+                    <button class="bg-blue text-white p-2">Go back and edit dinner</button>
                 </div>
-            </div>
-            <div id="selectedDishesContainer" class="flex flex-row justify-around">
-                
             </div>
             
+            <!-- Main part -->
+            <div id="dinnerOverviewContainer">
+
+            </div>
 		</div>
 	</div>
 
@@ -45,8 +53,14 @@
 	<script src="js/model/dinnerModel.js"></script>
 	<script src="js/view/exampleView.js"></script>
     <script src="js/view/homeView.js"></script>
-    <script src="js/view/selectDishView.js"></script>
+
+    <script src="js/view/sidebarView.js"></script>
+    <script src="js/view/dishSearchView.js"></script>
+    <script src="js/view/dishItemView.js"></script>
+
     <script src="js/view/dishDetailsView.js"></script>
-    <script src="js/view/dinnerOverview.js"></script>
+    
+    <script src="js/view/backAndEditView.js"></script>
+    <script src="js/view/dinnerOverviewView.js"></script>
   </body>
 </html>

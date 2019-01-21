@@ -12,10 +12,6 @@
  * @param {Object} model - the reference to the Dinner Model
  */ 
 var DinnerOverviewView = function (container, model) {
-    //Search result
-    //var searchResultContainer = container.find("#searchResultContainer");
-
-
-	
+    
 }
  
