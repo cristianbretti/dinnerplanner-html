@@ -12,6 +12,17 @@
  * @param {Object} model - the reference to the Dinner Model
  */ 
 var DinnerOverviewView = function (container, model) {
-    
+    var menuDishesContainer = container.find('#menuDishesContainer');
+    var menu = model.getFullMenu();
+    menu.map(function(dish) {
+        var dishItemWithPriceContainer = $('<div/>')
+        var dishItemView = new DishItemView(dishItemWithPriceContainer, dish);
+        var costOfDish = $('<div/>').attr({'class': 'text-right pr-6'}).html(model.getDishPrice(dish.id) + " SEK")
+        dishItemWithPriceContainer.append(costOfDish);
+        menuDishesContainer.append(dishItemWithPriceContainer)
+    })
+
+    var totalPrice = container.find('#totalPrice');
+    totalPrice.html(model.getTotalMenuPrice() + ' SEK');
 }
  

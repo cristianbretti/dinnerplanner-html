@@ -20,8 +20,8 @@
         <!-- Body -->
 		<div id="dinnerOverviewView" class="body">
             <!-- Back and Edit panel -->
-            <div id="backAndEditContainer" class="flex border-b">
-                <div class="flex-1 flex">
+            <div id="backAndEditContainer" class="flex border-b-4 border-black p-3">
+                <div class="flex-1 flex lg:text-xl font-bold p-2">
                     <div>
                         My dinner:&nbsp;
                     </div>
@@ -36,8 +36,22 @@
             </div>
             
             <!-- Main part -->
-            <div id="dinnerOverviewContainer">
+            <div id="dinnerOverviewContainer" class="flex flex-wrap m-5 p-5 border-b-4 border-black">
+                <div id="menuDishesContainer" class="flex-3 flex flex-wrap justify-end">
+                    <!-- Inserted in dinnerOverviewView.js -->
 
+                </div>
+                <div id="totalPriceContainer" class="flex-1 flex flex-col justify-end border-l-4 border-black pl-3">
+                    <div>
+                        Total:
+                    </div>
+                    <div id=totalPrice>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <button class="bg-blue text-white p-2"> Print full recipe </button>
             </div>
 		</div>
 	</div>
