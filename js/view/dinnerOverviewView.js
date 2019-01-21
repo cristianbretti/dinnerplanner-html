@@ -13,7 +13,7 @@
  */ 
 var DinnerOverviewView = function (container, model) {
     //Search result
-    var searchResultContainer = container.find("#searchResultContainer");
+    //var searchResultContainer = container.find("#searchResultContainer");
 
 
 	
