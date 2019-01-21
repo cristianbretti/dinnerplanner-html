@@ -6,9 +6,17 @@ $(function() {
 	var exampleView = new ExampleView($("#exampleView"));
 
 	var homeView = new HomeView($("#homeView"));
-	var selectDishView = new SelectDishView($("#selectDishView"), model);
-	var dishDetailsView = new DishDetailsView($("#dishDetailsView"), model)
+	
 	var dinnerOverviewView = new DinnerOverviewView($('#dinnerOverviewView'), model);
+
+	// Left Panel
+	var sidebarView = new SidebarView($("#sidebarContainer"), model);
+
+	// Search result
+	var dishSearchView = new DishSearchView($("#dishSearchContainer"), model);
+
+	// Dish detail
+	var dishDetailsView = new DishDetailsView($("#dishDetailsContainer"), model);
 
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to

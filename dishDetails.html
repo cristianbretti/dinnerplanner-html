@@ -19,34 +19,38 @@
         <!-- Body -->
 		<div id="dishDetailsView" class="body flex flex-row justify-center">
             <!-- Sidebar -->
-            <div id="sideBar" class="flex-1 border flex flex-col">
-                    <div id="sideBarHeaderContainer" class="flex flex-row">
-                        <h3 class="flex-3">
-                            My Dinner
-                        </h3>
-                        <!-- The burger menu -->
-                        <button type="button" class="flex-1 btn btn-default btn-sm only-small">
-                            <span class="glyphicon glyphicon-minus"></span>
-                        </button>
+            
+            <div id="sidebarContainer" class="flex-1 border flex flex-col">
+                <div id="sidebarHeaderContainer" class="flex flex-row">
+                    <h3 class="flex-3">
+                        My Dinner
+                    </h3>
+                    <!-- The burger menu -->
+                    <button type="button" class="flex-1 btn btn-default btn-sm only-small">
+                        <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                </div>
+                <div id="sidbarContentContainer" class="sidebarContent flex flex-col">
+                    <div id="numberOfGuestsSelectorContainer" class="flex flex-row">
+                        <h4>People</h4>
+                        <input id="numberOfGuestsInput" type="number" step="1" value="0"/>
                     </div>
-                    <div id="sidbarContentContainer" class="sidebarContent flex flex-col">
-                        <div id="numberOfPeopleSelectorContainer" class="flex flex-row">
-                            <h4>People</h4>
-                            <input id="numberOfPeopleInput" type="number" step="1" value="0"/>
-                        </div>
-                        <div id="selectedDishesContainer" class="flex flex-col">
-                            <div id="selectedDishesHeader" class="flex flex-row border justify-between bg-success">
-                                <div>
-                                    Dish name
-                                </div>
-                                <div>
-                                    Cost
-                                </div>
+                    <div id="selectedDishesContainer" class="flex flex-col">
+                        <div id="selectedDishesHeader" class="flex flex-row border justify-between bg-success">
+                            <div>
+                                Dish name
                             </div>
-                            
+                            <div>
+                                Cost
+                            </div>
                         </div>
+                        <div id="selectedDishesNameAndPriceContainer">
+
+                        </div>
+                        
                     </div>
                 </div>
+            </div>
         
             <!-- Main part -->
             <div id="dishDetailsContainer" class="flex-3 border flex-col flex">
@@ -77,7 +81,11 @@
 	<script src="js/model/dinnerModel.js"></script>
 	<script src="js/view/exampleView.js"></script>
     <script src="js/view/homeView.js"></script>
-    <script src="js/view/selectDishView.js"></script>
+
+    <script src="js/view/sidebarView.js"></script>
+    <script src="js/view/dishSearchView.js"></script>
+    <script src="js/view/dishItemView.js"></script>
+
     <script src="js/view/dishDetailsView.js"></script>
     <script src="js/view/dinnerOverviewView.js"></script>
   </body>
