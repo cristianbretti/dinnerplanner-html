@@ -6,9 +6,10 @@
 var SidebarView = function (container, model) {  
 
     // Add functionality to hamburger
-    $("#hamburgerToggle").click(function() {
-        $('#sidebarContent').toggle();
-    })
+    var listener = function() {
+        container.find('#sidebarContent').toggle();
+    }
+    container.find("#hamburgerToggle").click(listener);
 
     //Number of guests input on left panel
     numberOfGuestsInput = container.find('#numberOfGuestsInput');
