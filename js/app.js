@@ -23,6 +23,9 @@ $(function() {
 
 	// Dinner overview
 	var dinnerOverviewView = new DinnerOverviewView($("#dinnerOverviewContainer"), model);
+
+	// Dinner printout
+	var dinnerPrintoutView = new DinnerPrintoutView($("#dinnerPrintoutContainer"), model);
 	
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to
