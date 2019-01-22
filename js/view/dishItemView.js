@@ -11,10 +11,10 @@ var DishItemView = function (container, dish) {
     });
 
     var imageText = $('<div/>').attr({
-        'class': 'imageText border border-black text-center truncate text-sm',
+        'class': 'imageText border-2 border-black text-center truncate text-sm',
     }).text(dish.name);
 
-    var imageContainer = $('<div />', {"class": 'imageContainer flex justify-center border border-black',});
+    var imageContainer = $('<div />', {"class": 'imageContainer flex justify-center border-2 border-black',});
     imageContainer.append(image);
     var wrapper = $('<div />', {"class": 'smallImageContainer p-6',});
     wrapper.append(imageContainer, imageText);
