@@ -15,10 +15,6 @@ var SidebarView = function (container, model) {
     numberOfGuestsInput = container.find('#numberOfGuestsInput');
     numberOfGuestsInput.attr('value', model.getNumberOfGuests());
 
-    //Temporary add dishes to the menu TODO: remove
-    model.addDishToMenu(1);
-    model.addDishToMenu(101);
-
     //Selected dishes in left panel
     var selectedDishesNameAndPriceContainer = container.find('#selectedDishesNameAndPriceContainer');
     var selectedDishes = model.getFullMenu();
@@ -38,4 +34,5 @@ var SidebarView = function (container, model) {
     //Total price on left panel
     var totalPriceContainer = container.find("#totalCost");
     totalPriceContainer.html("SEK " + model.getTotalMenuPrice());
+
 }

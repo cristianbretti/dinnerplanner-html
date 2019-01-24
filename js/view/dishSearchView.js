@@ -16,5 +16,5 @@ var DishSearchView = function (container, model) {
     result = model.getAllDishes('starter');
     result.map(function(dish) {
        var dishItemView = new DishItemView(resultContainer, dish);
-    })
+    });
 }

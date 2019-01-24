@@ -3,11 +3,9 @@ $(function() {
 	var model = new DinnerModel();
 	
 	// And create the instance of ExampleView
-	var exampleView = new ExampleView($("#exampleView"));
+	// var exampleView = new ExampleView($("#exampleView"));
 
 	var homeView = new HomeView($("#homeView"));
-	
-	var dinnerOverviewView = new DinnerOverviewView($('#dinnerOverviewView'), model);
 
 	// Left Panel
 	var sidebarView = new SidebarView($("#sidebarContainer"), model);
@@ -27,11 +25,48 @@ $(function() {
 	// Dinner printout
 	var dinnerPrintoutView = new DinnerPrintoutView($("#dinnerPrintoutContainer"), model);
 	
-	/**
-	 * IMPORTANT: app.js is the only place where you are allowed to
-	 * use the $('someSelector') to search for elements in the whole HTML.
-	 * In other places you should limit the search only to the children 
-	 * of the specific view you're working with (see exampleView.js).
-	 */
+	// Default show
+	this.hideAll = function() {
+		$("#homeView").hide();
 
+		$("#sidebarContainer").hide();
+		$("#dishSearchContainer").hide();
+		$("#dishDetailsContainer").hide();
+
+		$("#backAndEditContainer").hide();
+		$('#dinnerOverviewContainer').hide();
+		$("#dinnerPrintoutContainer").hide();
+	}
+
+	this.showHomeScreen = function() {
+		this.hideAll();
+		$("#homeView").show();
+	}
+
+	this.showDishSearchScreen = function() {
+		this.hideAll();
+		$("#sidebarContainer").show();
+		$("#dishSearchContainer").show();
+	}
+	this.showDishDetailScreen = function() {
+		this.hideAll();
+		$("#sidebarContainer").show();
+		$("#dishDetailContainer").show();
+	}
+	this.showDinnerOverviewScreen = function() {
+		this.hideAll();
+		$("#backAndEditContainer").show();
+		$('#dinnerOverviewContainer').show();
+	}
+	this.showDinnerPrintoutScreen = function() {
+		this.hideAll();
+		$("#backAndEditContainer").show();
+		$('#dinnerPrintoutContainer').show();
+	}
+
+	// this.showHomeScreen(); // done
+	this.showDishSearchScreen();
+	// this.showDishDetailScreen();
+	// this.showDinnerOverviewScreen();
+	// this.showDinnerPrintoutScreen();
 });

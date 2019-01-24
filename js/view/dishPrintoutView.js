@@ -54,5 +54,4 @@ var DishPrintoutView = function (container, dish) {
     rowDiv.append(imageAndNameContainer, preperationDiv)
 
     container.append(rowDiv);
-    
 }
