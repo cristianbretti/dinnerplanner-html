@@ -3,9 +3,9 @@
  * @param {Object} dishSearchView - the dishSearchView object
  * @param {Object} app - the general state controller
  */ 
-var DishSearchController = function (dishSearchView, app) {
+var DishSearchController = function (dishSearchView, model, app) {
     dishSearchView.resultViews.map(function(dishItemView) {
-        var dishItemController = new DishItemController(dishItemView, app);
+        var dishItemController = new DishItemController(dishItemView, model, app);
     })
 }
  

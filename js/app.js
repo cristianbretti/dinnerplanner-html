@@ -6,27 +6,27 @@ $(function() {
 	// var exampleView = new ExampleView($("#exampleView"));
 
 	var homeView = new HomeView($("#homeView"));
-	var homeController = new HomeController(homeView, this);
+	var homeController = new HomeController(homeView, model, this);
 
 	// Left Panel
 	var sidebarView = new SidebarView($("#sidebarContainer"), model);
-	var sidebarController = new SidebarController(sidebarView, this);
+	var sidebarController = new SidebarController(sidebarView, model, this);
 
 	// Search result
 	var dishSearchView = new DishSearchView($("#dishSearchContainer"), model);
-	var dishSearchController = new DishSearchController(dishSearchView, this);
+	var dishSearchController = new DishSearchController(dishSearchView, model, this);
 
 	// Dish detail
 	var dishDetailsView = new DishDetailsView($("#dishDetailsContainer"), model);
-	var dishDetailsController = new DishDetailsController(dishDetailsView, this);
+	var dishDetailsController = new DishDetailsController(dishDetailsView, model, this);
 
 	// Back and edit Panel
 	var backAndEditView = new BackAndEditView($("#backAndEditContainer"), model);
-	var backAndEditController = new BackAndEditController(backAndEditView, this);
+	var backAndEditController = new BackAndEditController(backAndEditView, model, this);
 
 	// Dinner overview
 	var dinnerOverviewView = new DinnerOverviewView($("#dinnerOverviewContainer"), model);
-	var dinnerOverviewController = new DinnerOverviewController(dinnerOverviewView, this);
+	var dinnerOverviewController = new DinnerOverviewController(dinnerOverviewView, model, this);
 
 	// Dinner printout
 	var dinnerPrintoutView = new DinnerPrintoutView($("#dinnerPrintoutContainer"), model);
@@ -56,8 +56,7 @@ $(function() {
 		$("#sidebarContainer").show();
 		$("#dishSearchContainer").show();
 	}
-	this.showDishDetailsScreen = function(dishId) {
-		model.setDetailedDinner(dishId);
+	this.showDishDetailsScreen = function() {
 		this.hideAll();
 		$("#selectDishScreen").show();
 		$("#sidebarContainer").show();

@@ -3,10 +3,10 @@
  * @param {Object} dishItemView - the dishItemView object
  * @param {Object} app - the general state controller
  */ 
-var DishItemController = function (dishItemView, app) {
+var DishItemController = function (dishItemView, model, app) {
     dishItemView.item.click(function() {
-        console.log(dishItemView.dishId);
-        app.showDishDetailsScreen(dishItemView.dishId);
+        model.setDetailedDinner(dishItemView.dishId);
+        app.showDishDetailsScreen();
     })
 }
  
