@@ -5,4 +5,5 @@
  */ 
 var BackAndEditView = function (container, model) {
     container.find("#numberOfGuests").html(model.getNumberOfGuests());
+    this.backAndEditBtn = container.find("#backAndEditBtn");
 }

@@ -28,7 +28,7 @@
 							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 						</div>
 						<div class="flex-1">
-							<button class="bg-blue text-white p-2 rounded">Create new dinner</button>
+							<button id="createNewBtn" class="bg-blue text-white p-2 rounded">Create new dinner</button>
 						</div>
 					</div>
 				</div>
@@ -71,7 +71,7 @@
 
 							</div>
 							<div class="flex justify-center pt-6 pb-6">
-									<button class="bg-orange-light hover:bg-orange p-2">Confirm Dinner</button>
+									<button id="confirmDinnerBtn" class="bg-orange-light hover:bg-orange p-2">Confirm Dinner</button>
 							</div>
 						</div>
 					</div>	
@@ -140,7 +140,7 @@
 								</div>
 						</div>
 						<div>
-								<button class="bg-blue text-white p-2">Go back and edit dinner</button>
+								<button id="backAndEditBtn" class="bg-blue text-white p-2">Go back and edit dinner</button>
 						</div>
 				</div>
 
@@ -180,7 +180,7 @@
 		<!-- The application JavaScript code -->
 		<script src="js/app.js"></script>
 		<script src="js/model/dinnerModel.js"></script>
-		<script src="js/view/exampleView.js"></script>
+		<!-- Views -->
 		<script src="js/view/homeView.js"></script>
 
 		<script src="js/view/sidebarView.js"></script>
@@ -193,5 +193,9 @@
 		<script src="js/view/dinnerOverviewView.js"></script>
 		<script src="js/view/dinnerPrintoutView.js"></script>
 		<script src="js/view/dishPrintoutView.js"></script>
+		<!-- Controllers -->
+		<script src="js/controller/homeController.js"></script>
+		<script src="js/controller/sidebarController.js"></script>
+		<script src="js/controller/backAndEditController.js"></script>
   </body>
 </html>

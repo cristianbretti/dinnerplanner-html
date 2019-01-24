@@ -12,6 +12,6 @@
  * @param {Object} model - the reference to the Dinner Model
  */ 
 var HomeView = function (container, model) {
-    
+    this.createNewDinnerBtn = container.find("#createNewBtn"); 
 }
  

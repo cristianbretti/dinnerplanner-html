@@ -5,6 +5,7 @@
  */ 
 var SidebarView = function (container, model) {  
 
+    this.confirmDinnerBtn = container.find("#confirmDinnerBtn");
     // Add functionality to hamburger
     var listener = function() {
         container.find('#sidebarContent').toggle();
@@ -12,15 +13,15 @@ var SidebarView = function (container, model) {
     container.find("#hamburgerToggle").click(listener);
 
     //Number of guests input on left panel
-    numberOfGuestsInput = container.find('#numberOfGuestsInput');
-    numberOfGuestsInput.attr('value', model.getNumberOfGuests());
+    this.numberOfGuestsInput = container.find('#numberOfGuestsInput');
+    this.numberOfGuestsInput.attr('value', model.getNumberOfGuests());
 
     //Temporary add dishes to the menu TODO: remove
 -    model.addDishToMenu(1);
 -    model.addDishToMenu(101);
 
     //Selected dishes in left panel
-    var selectedDishesNameAndPriceContainer = container.find('#selectedDishesNameAndPriceContainer');
+    this.selectedDishesNameAndPriceContainer = container.find('#selectedDishesNameAndPriceContainer');
     var selectedDishes = model.getFullMenu();
 
     selectedDishes.map(function(dish) {
@@ -32,11 +33,12 @@ var SidebarView = function (container, model) {
         var priceOfDish = $('<div/>').attr('class', "").html(model.getDishPrice(dish.id))
 
         oneSelectedDishContainer.append(nameOfDish, priceOfDish);
-        selectedDishesNameAndPriceContainer.append(oneSelectedDishContainer);
-    });
+        this.selectedDishesNameAndPriceContainer.append(oneSelectedDishContainer);
+    }, this);
+    this.selectedDishesNameAndPriceContainer = selectedDishesNameAndPriceContainer;
 
     //Total price on left panel
-    var totalPriceContainer = container.find("#totalCost");
-    totalPriceContainer.html("SEK " + model.getTotalMenuPrice());
+    this.totalPriceContainer = container.find("#totalCost");
+    this.totalPriceContainer.html("SEK " + model.getTotalMenuPrice());
 
 }

@@ -6,9 +6,11 @@ $(function() {
 	// var exampleView = new ExampleView($("#exampleView"));
 
 	var homeView = new HomeView($("#homeView"));
+	var homeController = new HomeController(homeView, this);
 
 	// Left Panel
 	var sidebarView = new SidebarView($("#sidebarContainer"), model);
+	var sidebarController = new SidebarController(sidebarView, this);
 
 	// Search result
 	var dishSearchView = new DishSearchView($("#dishSearchContainer"), model);
@@ -18,6 +20,7 @@ $(function() {
 
 	// Back and edit Panel
 	var backAndEditView = new BackAndEditView($("#backAndEditContainer"), model);
+	var backAndEditController = new BackAndEditController(backAndEditView, this);
 
 	// Dinner overview
 	var dinnerOverviewView = new DinnerOverviewView($("#dinnerOverviewContainer"), model);
@@ -67,9 +70,9 @@ $(function() {
 		$('#dinnerPrintoutContainer').show();
 	}
 
-	// this.showHomeScreen(); // done
+	this.showHomeScreen(); // done
 	// this.showDishSearchScreen(); // done
 	// this.showDishDetailsScreen(); // done
 	// this.showDinnerOverviewScreen(); // done
-	this.showDinnerPrintoutScreen(); // done
+	// this.showDinnerPrintoutScreen(); // done
 });
