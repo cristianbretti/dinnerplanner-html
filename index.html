@@ -33,9 +33,10 @@
 					</div>
 				</div>
 
-				<!-- Sidebar --> 
-				<div id="sidebarContainer" class="flex-1  flex-when-big">
-					<div id="sidebarHeaderContainer" class="flex border-l border-r border-t border-black">
+				<div id="selectDishScreen" class="flex-when-big h-full">
+					<!-- Sidebar --> 
+					<div id="sidebarContainer" class="flex-1 ">
+						<div id="sidebarHeaderContainer" class="flex border-l border-r border-t border-black">
 							<div class="flex-1 p-2 text-lg">
 									My Dinner
 							</div>
@@ -43,8 +44,8 @@
 							<button id="hamburgerToggle" type="button" class="bg-blue text-white p-2 only-small">
 									Ham
 							</button>
-					</div>
-					<div id="sidebarContent" class="bg-white border-l border-r border-b border-black shadow">
+						</div>
+						<div id="sidebarContent" class="bg-white border-l border-r border-b border-black shadow">
 							<div id="numberOfGuestsSelectorContainer" class="flex pl-2 pb-2">
 									<div class="flex flex-col justify-center">
 											<div>
@@ -72,58 +73,59 @@
 							<div class="flex justify-center pt-6 pb-6">
 									<button class="bg-orange-light hover:bg-orange p-2">Confirm Dinner</button>
 							</div>
-					</div>
-				</div>
+						</div>
+					</div>	
 
-				<!-- searchDish -->
-				<div id="dishSearchContainer" class="flex-3 border flex-col flex  flex-when-big">
-					<div id="inputContainer" class="border p-4">
-							<div class="text-xl font-bold pb-3">
-											FIND A DISH
-							</div>
-							<div class="flex flex-wrap -ml-2">
-									<input type="text" class="border flex-1 mx-2" placeholder="Enter key words">
-									<select  class="border flex-1 mx-2">
-											<option>All</option>
-											<option>starter</option>
-											<option>main dish</option>
-											<option>dessert</option>
-
-									</select>
-									<button class="p-2 bg-orange ml-2 ">Search</button>
-							</div>
+					<!-- searchDish -->
+					<div id="dishSearchContainer" class="flex-3 border flex-col flex">
+						<div id="inputContainer" class="border p-4">
+								<div class="text-xl font-bold pb-3">
+												FIND A DISH
+								</div>
+								<div class="flex flex-wrap -ml-2">
+										<input type="text" class="border flex-1 mx-2" placeholder="Enter key words">
+										<select  class="border flex-1 mx-2">
+												<option>All</option>
+												<option>starter</option>
+												<option>main dish</option>
+												<option>dessert</option>
+	
+										</select>
+										<button class="p-2 bg-orange ml-2 ">Search</button>
+								</div>
+						</div>
+						<div id="resultContainer" class=" flex justify-center flex-wrap">
+	
+						</div>
 					</div>
-					<div id="resultContainer" class=" flex justify-center flex-wrap">
 
+					<!-- dishDetails-->
+					<div id="dishDetailsContainer" class="flex-3 border">
+						<div class="flex flex-wrap">
+								<div id="dishOverviewContainer" class="flex-1 p-6">
+										<div id="dishName" class="text-xl font-bold pb-3"></div>
+										<div class="mb-2"><img id="dishImage"/></div>
+										<div id="dishType" class="mb-2"></div>
+										<button type="button" class="border bg-orange p-2 rounded">
+												Back to search
+										</button>
+								</div>
+								<div class="border-2 border-black bg-orange-lighter flex-1 flex flex-col m-6">
+										<div id="dishRecipeContainer" class="flex-1 whitespace-no-wrap">
+								
+										</div>
+										<div class="m-2 border-black border"></div>
+										<div class="flex justify-between p-2">
+												<button class="p-2 bg-orange border border-black">Add to menu</button>
+												<div id="totalCost" class="pr-2">
+														
+												</div>
+										</div>
+								</div>
+						</div>
+						<div class="mt-8 text-xl font-bold px-6">PREPARATIONS:</div>
+						<div id="dishDescription" class="px-6"></div>
 					</div>
-				</div>
-
-				<!-- dishDetails-->
-				<div id="dishDetailsContainer" class="flex-3 border  flex-when-big">
-					<div class="flex flex-wrap">
-							<div id="dishOverviewContainer" class="flex-1 p-6">
-									<div id="dishName" class="text-xl font-bold pb-3"></div>
-									<div class="mb-2"><img id="dishImage"/></div>
-									<div id="dishType" class="mb-2"></div>
-									<button type="button" class="border bg-orange p-2 rounded">
-											Back to search
-									</button>
-							</div>
-							<div class="border-2 border-black bg-orange-lighter flex-1 flex flex-col m-6">
-									<div id="dishRecipeContainer" class="flex-1 whitespace-no-wrap">
-							
-									</div>
-									<div class="m-2 border-black border"></div>
-									<div class="flex justify-between p-2">
-											<button class="p-2 bg-orange border border-black">Add to menu</button>
-											<div id="totalCost" class="pr-2">
-													
-											</div>
-									</div>
-							</div>
-					</div>
-					<div class="mt-8 text-xl font-bold px-6">PREPARATIONS:</div>
-					<div id="dishDescription" class="px-6"></div>
 				</div>
 
 				<!-- Back and Edit panel -->
@@ -143,18 +145,20 @@
 				</div>
 
 				<!-- dinnerOverview-->
-				<div id="dinnerOverviewContainer" class="flex flex-wrap m-5 p-5 border-b-4 border-black">
-					<div id="menuDishesContainer" class="flex-3 flex flex-wrap justify-end">
-							<!-- Inserted in dinnerOverviewView.js -->
-
-					</div>
-					<div id="totalPriceContainer" class="flex-1 flex flex-col justify-end border-l-4 border-black pl-3">
-							<div>
-									Total:
-							</div>
-							<div id=totalPrice>
-									
-							</div>
+				<div id="dinnerOverviewContainer" class="h-full">
+					<div  class="flex flex-wrap m-5 p-5 border-b-4 border-black">
+						<div id="menuDishesContainer" class="flex-3 flex flex-wrap justify-end">
+								<!-- Inserted in dinnerOverviewView.js -->
+	
+						</div>
+						<div id="totalPriceContainer" class="flex-1 flex flex-col justify-end border-l-4 border-black pl-3">
+								<div>
+										Total:
+								</div>
+								<div id=totalPrice>
+										
+								</div>
+						</div>
 					</div>
 					<div class="flex justify-center">
 						<button class="bg-blue text-white p-2"> Print full recipe </button>

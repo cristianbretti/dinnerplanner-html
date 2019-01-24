@@ -28,6 +28,7 @@ $(function() {
 	// Default show
 	this.hideAll = function() {
 		$("#homeView").hide();
+		$("#selectDishScreen").hide();
 
 		$("#sidebarContainer").hide();
 		$("#dishSearchContainer").hide();
@@ -45,13 +46,15 @@ $(function() {
 
 	this.showDishSearchScreen = function() {
 		this.hideAll();
+		$("#selectDishScreen").show();
 		$("#sidebarContainer").show();
 		$("#dishSearchContainer").show();
 	}
-	this.showDishDetailScreen = function() {
+	this.showDishDetailsScreen = function() {
 		this.hideAll();
+		$("#selectDishScreen").show();
 		$("#sidebarContainer").show();
-		$("#dishDetailContainer").show();
+		$("#dishDetailsContainer").show();
 	}
 	this.showDinnerOverviewScreen = function() {
 		this.hideAll();
@@ -65,8 +68,8 @@ $(function() {
 	}
 
 	// this.showHomeScreen(); // done
-	this.showDishSearchScreen();
-	// this.showDishDetailScreen();
-	// this.showDinnerOverviewScreen();
-	// this.showDinnerPrintoutScreen();
+	// this.showDishSearchScreen(); // done
+	// this.showDishDetailsScreen(); // done
+	// this.showDinnerOverviewScreen(); // done
+	this.showDinnerPrintoutScreen(); // done
 });
