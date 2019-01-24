@@ -14,7 +14,7 @@
 var DishDetailsView = function (container, model) {
 
     this.backToSearchBtn = container.find("#backToSearchBtn");
-    this.addToMenuBth = container.find("#addToMenuBtn");
+    this.addToMenuBtn = container.find("#addToMenuBtn");
 
     var selectedDish = model.getDish(model.getDetailedDinner());
     if (!selectedDish) {

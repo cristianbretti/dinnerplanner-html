@@ -6,6 +6,9 @@
 var DishDetailsController = function (dishDetailsView, model, app) {
     dishDetailsView.backToSearchBtn.click(function() {
         app.showDishSearchScreen();
-    })
+    });
+    dishDetailsView.addToMenuBtn.click(function() {
+        model.addDishToMenu(model.getDetailedDinner());
+    });
 }
  
