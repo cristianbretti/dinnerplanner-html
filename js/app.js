@@ -24,6 +24,7 @@ $(function() {
 
 	// Dinner overview
 	var dinnerOverviewView = new DinnerOverviewView($("#dinnerOverviewContainer"), model);
+	var dinnerOverviewController = new DinnerOverviewController(dinnerOverviewView, this);
 
 	// Dinner printout
 	var dinnerPrintoutView = new DinnerPrintoutView($("#dinnerPrintoutContainer"), model);
