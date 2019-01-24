@@ -12,7 +12,14 @@
  * @param {Object} model - the reference to the Dinner Model
  */ 
 var DishDetailsView = function (container, model) {
-    var selectedDish = model.getDish(1)
+
+    this.backToSearchBtn = container.find("#backToSearchBtn");
+    this.addToMenuBth = container.find("#addToMenuBtn");
+
+    var selectedDish = model.getDish(model.getDetailedDinner());
+    if (!selectedDish) {
+        return;
+    }
     var numberOfGuests = model.getNumberOfGuests();
 
     //Set name

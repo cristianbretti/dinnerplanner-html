@@ -12,9 +12,19 @@
  * @param {Object} item - one dish item.
  */ 
 var DishSearchView = function (container, model) {
+
+    this.searchBtn = container.find("#searchBtn");
+    this.typeFilter = container.find("#typeFilter");
+    this.textFilter = container.find("#textFilter");
+
     var resultContainer = container.find("#resultContainer");
     result = model.getAllDishes('starter');
+
+    this.resultViews = [];
     result.map(function(dish) {
        var dishItemView = new DishItemView(resultContainer, dish);
-    });
+       this.resultViews.push(dishItemView);
+    }, this);
+
+    
 }

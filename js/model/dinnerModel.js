@@ -5,6 +5,7 @@ var DinnerModel = function() {
 	// and selected dishes for the dinner menu
 	var numberOfGuests = 5;
 	var selectedDishes = [];
+	var detailedDinner = 1;
 
 	this.setNumberOfGuests = function(num) {
 		numberOfGuests = num;
@@ -12,6 +13,14 @@ var DinnerModel = function() {
 	
 	this.getNumberOfGuests = function() {
 		return numberOfGuests;
+	}
+
+	this.getDetailedDinner = function() {
+		return detailedDinner;
+	}
+
+	this.setDetailedDinner = function(id) {
+		detailedDinner = id;
 	}
 
 	//Returns the dish that is on the menu for selected type 

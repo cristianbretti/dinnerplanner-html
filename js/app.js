@@ -14,9 +14,11 @@ $(function() {
 
 	// Search result
 	var dishSearchView = new DishSearchView($("#dishSearchContainer"), model);
+	var dishSearchController = new DishSearchController(dishSearchView, this);
 
 	// Dish detail
 	var dishDetailsView = new DishDetailsView($("#dishDetailsContainer"), model);
+	var dishDetailsController = new DishDetailsController(dishDetailsView, this);
 
 	// Back and edit Panel
 	var backAndEditView = new BackAndEditView($("#backAndEditContainer"), model);
@@ -54,7 +56,8 @@ $(function() {
 		$("#sidebarContainer").show();
 		$("#dishSearchContainer").show();
 	}
-	this.showDishDetailsScreen = function() {
+	this.showDishDetailsScreen = function(dishId) {
+		model.setDetailedDinner(dishId);
 		this.hideAll();
 		$("#selectDishScreen").show();
 		$("#sidebarContainer").show();

@@ -25,7 +25,7 @@ var DinnerOverviewView = function (container, model) {
         this.menuDishesContainer.append(dishItemWithPriceContainer)
     }, this)
 
-    var totalPrice = container.find('#totalPrice');
-    totalPrice.html(model.getTotalMenuPrice() + ' SEK');
+    this.totalPrice = container.find('#totalPrice');
+    this.totalPrice.html(model.getTotalMenuPrice() + ' SEK');
 }
  

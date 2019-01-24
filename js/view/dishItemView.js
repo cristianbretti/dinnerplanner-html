@@ -16,8 +16,11 @@ var DishItemView = function (container, dish) {
 
     var imageContainer = $('<div />', {"class": 'imageContainer flex justify-center border-2 border-black',});
     imageContainer.append(image);
-    var wrapper = $('<div />', {"class": 'smallImageContainer p-6',});
+    var wrapper = $('<div />', {"class": 'smallImageContainer p-6 cursor-pointer',});
     wrapper.append(imageContainer, imageText);
     
     container.append(wrapper);
+
+    this.dishId = dish.id;
+    this.item = wrapper;
 }

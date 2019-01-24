@@ -8,4 +8,3 @@ var HomeController = function (homeView, app) {
         app.showDishSearchScreen();
     });
 }
- 

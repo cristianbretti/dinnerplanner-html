@@ -83,15 +83,15 @@
 												FIND A DISH
 								</div>
 								<div class="flex flex-wrap -ml-2">
-										<input type="text" class="border flex-1 mx-2" placeholder="Enter key words">
-										<select  class="border flex-1 mx-2">
+										<input id="textFilter" type="text" class="border flex-1 mx-2" placeholder="Enter key words">
+										<select id="typeFilter" class="border flex-1 mx-2">
 												<option>All</option>
 												<option>starter</option>
 												<option>main dish</option>
 												<option>dessert</option>
 	
 										</select>
-										<button class="p-2 bg-orange ml-2 ">Search</button>
+										<button id="searchBtn" class="p-2 bg-orange ml-2 ">Search</button>
 								</div>
 						</div>
 						<div id="resultContainer" class=" flex justify-center flex-wrap">
@@ -106,7 +106,7 @@
 										<div id="dishName" class="text-xl font-bold pb-3"></div>
 										<div class="mb-2"><img id="dishImage"/></div>
 										<div id="dishType" class="mb-2"></div>
-										<button type="button" class="border bg-orange p-2 rounded">
+										<button id="backToSearchBtn" type="button" class="border bg-orange p-2 rounded">
 												Back to search
 										</button>
 								</div>
@@ -116,7 +116,7 @@
 										</div>
 										<div class="m-2 border-black border"></div>
 										<div class="flex justify-between p-2">
-												<button class="p-2 bg-orange border border-black">Add to menu</button>
+												<button id="addToMenuBtn" class="p-2 bg-orange border border-black">Add to menu</button>
 												<div id="totalCost" class="pr-2">
 														
 												</div>
@@ -198,5 +198,8 @@
 		<script src="js/controller/sidebarController.js"></script>
 		<script src="js/controller/backAndEditController.js"></script>
 		<script src="js/controller/dinnerOverviewController.js"></script>
+		<script src="js/controller/dishSearchController.js"></script>
+		<script src="js/controller/dishItemController.js"></script>
+		<script src="js/controller/dishDetailsController.js"></script>
   </body>
 </html>
