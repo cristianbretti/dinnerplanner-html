@@ -1,10 +1,10 @@
 /** HomeController Object constructor
  * 
  * @param {Object} homeView - the HomeView object
- * @param {Object} app - the general state controller
+ * @param {Object} model - the reference to the Dinner Model.
  */ 
-var HomeController = function (homeView, model, app) {
+var HomeController = function (homeView, model) {
     homeView.createNewDinnerBtn.click(function() {
-        app.showDishSearchScreen();
+        showDishSearchScreen();
     });
 }

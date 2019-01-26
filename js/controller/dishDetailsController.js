@@ -1,11 +1,11 @@
 /** DishDetailsController Object constructor
  * 
  * @param {Object} dishDetailsView - the dishDetailsView object
- * @param {Object} app - the general state controller
+ * @param {Object} model - the reference to the Dinner Model.
  */ 
-var DishDetailsController = function (dishDetailsView, model, app) {
+var DishDetailsController = function (dishDetailsView, model) {
     dishDetailsView.backToSearchBtn.click(function() {
-        app.showDishSearchScreen();
+        showDishSearchScreen();
     });
     dishDetailsView.addToMenuBtn.click(function() {
         model.addDishToMenu(model.getDetailedDinner());

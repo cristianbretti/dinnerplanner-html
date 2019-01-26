@@ -1,15 +1,15 @@
 /** DinnerOverviewController Object constructor
  * 
  * @param {Object} dinnerOverviewView - the dinnerOverviewView object
- * @param {Object} app - the general state controller
+ * @param {Object} model - the reference to the Dinner Model.
  */ 
-var DinnerOverviewController = function (dinnerOverviewView, model, app) {
+var DinnerOverviewController = function (dinnerOverviewView, model) {
     dinnerOverviewView.printBtn.click(function() {
-        app.showDinnerPrintoutScreen();
+        showDinnerPrintoutScreen();
     });
 
     dinnerOverviewView.dishItems.map(function(dishItemView) {
-        var dishItemController = new DishItemController(dishItemView, model, app);
+        var dishItemController = new DishItemController(dishItemView, model);
     })
 }
  

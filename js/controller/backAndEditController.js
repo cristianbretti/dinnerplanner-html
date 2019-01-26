@@ -1,11 +1,11 @@
 /** BackAndEditController Object constructor
  * 
  * @param {Object} backAndEditView - the backAndEditView object
- * @param {Object} app - the general state controller
+ * @param {Object} model - the reference to the Dinner Model.
  */ 
-var BackAndEditController = function (backAndEditView, model, app) {
+var BackAndEditController = function (backAndEditView, model) {
     backAndEditView.backAndEditBtn.click(function() {
-        app.showDishSearchScreen();
+        showDishSearchScreen();
     });
 }
  
