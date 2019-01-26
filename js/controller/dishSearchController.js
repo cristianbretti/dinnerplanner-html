@@ -4,8 +4,12 @@
  * @param {Object} app - the general state controller
  */ 
 var DishSearchController = function (dishSearchView, model, app) {
-    dishSearchView.resultViews.map(function(dishItemView) {
+    dishSearchView.dishItems.map(function(dishItemView) {
         var dishItemController = new DishItemController(dishItemView, model, app);
     })
+
+    dishSearchView.searchBtn.click(function() {
+        console.log("Search clicked, TODO: update searchView");
+    });
 }
  

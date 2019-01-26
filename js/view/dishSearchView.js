@@ -18,12 +18,13 @@ var DishSearchView = function (container, model) {
     this.textFilter = container.find("#textFilter");
 
     var resultContainer = container.find("#resultContainer");
-    result = model.getAllDishes('starter');
+    //var result = model.getAllDishes(this.typeFilter, this.textFilter);
+    var result = model.getAllDishes('starter');
 
-    this.resultViews = [];
+    this.dishItems = [];
     result.map(function(dish) {
        var dishItemView = new DishItemView(resultContainer, dish);
-       this.resultViews.push(dishItemView);
+       this.dishItems.push(dishItemView);
     }, this);
 
     
