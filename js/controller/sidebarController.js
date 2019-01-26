@@ -7,5 +7,9 @@ var SidebarController = function (sidebarView, model, app) {
     sidebarView.confirmDinnerBtn.click(function() {
         app.showDinnerOverviewScreen();
     });
+
+    sidebarView.sidebarItems.map(function(item) {
+        var sidebarItemController = new SidebarItemController(item, model, app);
+    });
 }
  

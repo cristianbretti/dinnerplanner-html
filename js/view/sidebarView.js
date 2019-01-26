@@ -24,18 +24,12 @@ var SidebarView = function (container, model) {
     this.selectedDishesNameAndPriceContainer = container.find('#selectedDishesNameAndPriceContainer');
     var selectedDishes = model.getFullMenu();
 
+    this.sidebarItems = [];
     selectedDishes.map(function(dish) {
-        var oneSelectedDishContainer = $('<div/>').attr({
-            'class': 'flex justify-between bg-orange m-1 p-1 border border-black',
-        })
-
-        var nameOfDish = $('<div/>').attr('class', "").html(dish.name)
-        var priceOfDish = $('<div/>').attr('class', "").html(model.getDishPrice(dish.id))
-
-        oneSelectedDishContainer.append(nameOfDish, priceOfDish);
-        this.selectedDishesNameAndPriceContainer.append(oneSelectedDishContainer);
+        var price = model.getDishPrice(dish.id);
+        var sidebarItem = new SidebarItemView(this.selectedDishesNameAndPriceContainer, dish, price);
+        this.sidebarItems.push(sidebarItem);
     }, this);
-    this.selectedDishesNameAndPriceContainer = selectedDishesNameAndPriceContainer;
 
     //Total price on left panel
     this.totalPriceContainer = container.find("#totalCost");
