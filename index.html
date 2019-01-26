@@ -9,6 +9,7 @@
     <!-- CSS -->
 		<link rel="stylesheet" href="css/style.css">
 		<link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   </head>
   <body>
@@ -28,7 +29,7 @@
 							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 						</div>
 						<div class="flex-1">
-							<button id="createNewBtn" class="bg-blue text-white p-2 rounded">Create new dinner</button>
+							<button id="createNewBtn" class="bg-orange-light hover:bg-orange border-2 hover:shadow-inner shadow rounded border-orange hover:border-orange-light p-2">Create new dinner</button>
 						</div>
 					</div>
 				</div>
@@ -41,8 +42,8 @@
 									My Dinner
 							</div>
 							<!-- The burger menu -->
-							<button id="hamburgerToggle" type="button" class="bg-blue text-white p-2 only-small">
-									Ham
+							<button id="hamburgerToggle" type="button" class="bg-orange-light hover:bg-orange border-2 hover:shadow-inner shadow rounded border-orange hover:border-orange-light p-2 only-small">
+								<span id="barsIcon"class="fa fa-bars"></span>
 							</button>
 						</div>
 						<div id="sidebarContent" class="bg-white border-l border-r border-b border-black shadow">
@@ -53,7 +54,7 @@
 											</div>
 									</div>
 									<input id="numberOfGuestsInput" type="number" step="1" value="0"
-										class="w-10 border pl-2"
+										class="w-12 border pl-2"
 									/>
 							</div>
 							<div id="selectedDishesHeader" class="flex border justify-between bg-orange-lighter p-2">
@@ -72,7 +73,7 @@
 
 							</div>
 							<div class="flex justify-center pt-6 pb-6">
-									<button id="confirmDinnerBtn" class="bg-orange-light hover:bg-orange p-2">Confirm Dinner</button>
+									<button id="confirmDinnerBtn" class="bg-orange-light hover:bg-orange border-2 hover:shadow-inner shadow rounded border-orange hover:border-orange-light p-2">Confirm Dinner</button>
 							</div>
 						</div>
 					</div>	
@@ -92,7 +93,7 @@
 												<option>dessert</option>
 	
 										</select>
-										<button id="searchBtn" class="p-2 bg-orange ml-2 ">Search</button>
+										<button id="searchBtn" class="bg-orange-light hover:bg-orange border-2 hover:shadow-inner shadow rounded border-orange hover:border-orange-light p-2 ml-2 ">Search</button>
 								</div>
 						</div>
 						<div id="resultContainer" class=" flex justify-center flex-wrap">
@@ -107,7 +108,7 @@
 										<div id="dishName" class="text-xl font-bold pb-3"></div>
 										<div class="mb-2"><img id="dishImage"/></div>
 										<div id="dishType" class="mb-2"></div>
-										<button id="backToSearchBtn" type="button" class="border bg-orange p-2 rounded">
+										<button id="backToSearchBtn" type="button" class="bg-orange-light hover:bg-orange border-2 hover:shadow-inner shadow rounded border-orange hover:border-orange-light p-2">
 												Back to search
 										</button>
 								</div>
@@ -117,7 +118,7 @@
 										</div>
 										<div class="m-2 border-black border"></div>
 										<div class="flex justify-between p-2">
-												<button id="addToMenuBtn" class="p-2 bg-orange border border-black">Add to menu</button>
+												<button id="addToMenuBtn" class="bg-orange-light hover:bg-orange border-2 hover:shadow-inner shadow rounded border-orange hover:border-orange-light p-2">Add to menu</button>
 												<div id="totalCost" class="pr-2">
 														
 												</div>
@@ -141,7 +142,7 @@
 								</div>
 						</div>
 						<div>
-								<button id="backAndEditBtn" class="bg-blue text-white p-2">Go back and edit dinner</button>
+								<button id="backAndEditBtn" class="bg-orange-light hover:bg-orange border-2 hover:shadow-inner shadow rounded border-orange hover:border-orange-light p-2">Back and edit</button>
 						</div>
 				</div>
 
@@ -162,7 +163,7 @@
 						</div>
 					</div>
 					<div class="flex justify-center">
-						<button id="printBtn" class="bg-blue text-white p-2"> Print full recipe </button>
+						<button id="printBtn" class="bg-orange-light hover:bg-orange border-2 hover:shadow-inner shadow rounded border-orange hover:border-orange-light p-2"> Print full recipe </button>
 					</div>
 				</div>
 

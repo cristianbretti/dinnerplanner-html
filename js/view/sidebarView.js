@@ -4,7 +4,7 @@
  * @param {Object} model - the reference to the Dinner Model.
  */ 
 var SidebarView = function (container, model) {  
-    // Subscribe to model changes;
+    // Subscribe to model changes
     model.addObserver(this);
 
     // Find interactive elements
@@ -19,7 +19,6 @@ var SidebarView = function (container, model) {
     this.sidebarItemControllers = [];
     
     this.update = function() {
-        console.log("sidebarUpdate")
         this.numberOfGuestsInput.attr('value', model.getNumberOfGuests());
 
         this.selectedDishesNameAndPriceContainer.empty();

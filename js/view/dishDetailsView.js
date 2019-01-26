@@ -25,6 +25,7 @@ var DishDetailsView = function (container, model) {
     this.totalCost = container.find('#totalCost');
 
     this.update = function() {
+        this.dishRecipe.empty();
         var selectedDish = model.getDish(model.getDetailedDinner());
         if (!selectedDish) {
             return;
@@ -49,15 +50,17 @@ var DishDetailsView = function (container, model) {
 
         var totalCost = 0;
         selectedDish.ingredients.map(function(ingredient) {
-
             var oneIngredientContainer = $('<div/>').attr({'class': 'flex px-4',});
 
-            var quantity = $('<div/>').attr({'class': 'flex-1',}).html(ingredient.quantity + " " + ingredient.unit);
+            var quantityNumber = Math.round(ingredient.quantity*numberOfGuests);
+            var priceNumber = Math.round(ingredient.price*numberOfGuests);
+
+            var quantity = $('<div/>').attr({'class': 'flex-1',}).html(quantityNumber + " " + ingredient.unit);
             var name = $('<div/>').attr({'class': 'flex-2',}).html(ingredient.name)
-            var price = $('<div/>').attr({'class': 'flex-1 text-right pr-1',}).html(ingredient.price);
+            var price = $('<div/>').attr({'class': 'flex-1 text-right pr-1',}).html(priceNumber);
             var currency = $('<div/>').html(" SEK");
 
-            totalCost += ingredient.price;
+            totalCost += priceNumber;
 
             oneIngredientContainer.append(quantity, name, price, currency);
             this.dishRecipe.append(oneIngredientContainer);

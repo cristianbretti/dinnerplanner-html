@@ -9,7 +9,7 @@
  * 
  * 
  * @param {jQuery object} container - references the HTML parent element that contains the view.
- * @param {Object} item - one dish item.
+ * @param {Object} model - reference to the Dinner Model.
  */ 
 var DishSearchView = function (container, model) {
     // Subscribe to model changes

@@ -12,8 +12,8 @@ var SidebarItemView = function (container, dish, price) {
     this.priceOfDish = $('<div/>').attr('class', "").html(price);
     this.deleteDishBtn = $('<button/>')
         .attr('id', "deleteDishBtn")
-        .attr('class', "w-5 bg-red text-white rounded hover:bg-white hover:text-red")
-        .html("X");
+        .attr('class', "w-5 bg-red text-white rounded hover:bg-white hover:text-red hover:shadow-inner border border-orange hover:border-red")
+        .html($('<i/>').attr('class', 'fa fa-trash'));
     var buttonWrapper = $('<div/>')
         .attr('class', 'w-10 flex justify-end')
         .html(this.deleteDishBtn);

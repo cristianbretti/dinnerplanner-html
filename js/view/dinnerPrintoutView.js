@@ -4,9 +4,16 @@
  * @param {Object} model - the reference to the Dinner Model
  */ 
 var DinnerPrintoutView = function (container, model) {
-    var menu = model.getFullMenu();
+    // Subscribe to model
+    model.addObserver(this);
+
+    this.update = function() {
+        container.empty();
+        var menu = model.getFullMenu();
     
-    menu.map(function(dish) {
-        var dishPrintoutView = new DishPrintoutView(container, dish);
-    })
+        menu.map(function(dish) {
+            var dishPrintoutView = new DishPrintoutView(container, dish);
+        })
+    }
+    this.update();
 }

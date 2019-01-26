@@ -64,3 +64,19 @@
     right: 0;
     left: 0;
 }
+
+button:focus {
+    outline: none !important;
+}
+
+button:active {
+    transform: scale(0.98); 
+}
+
+input:focus {
+    outline-color: orange !important;
+}
+
+select:focus {
+    outline-color: orange !important;
+}

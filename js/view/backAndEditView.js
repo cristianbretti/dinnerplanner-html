@@ -4,6 +4,14 @@
  * @param {Object} model - the model.
  */ 
 var BackAndEditView = function (container, model) {
-    container.find("#numberOfGuests").html(model.getNumberOfGuests());
+    // Subscribe to model
+    model.addObserver(this);
+    // Find interactive elements
+    this.numberOfGuests = container.find("#numberOfGuests");
     this.backAndEditBtn = container.find("#backAndEditBtn");
+
+    this.update = function() {
+        this.numberOfGuests.html(model.getNumberOfGuests());
+    }
+    this.update();
 }
