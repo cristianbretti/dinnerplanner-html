@@ -8,6 +8,10 @@ var SidebarController = function (sidebarView, model, app) {
         app.showDinnerOverviewScreen();
     });
 
+    sidebarView.numberOfGuestsInput.change(function(event) {
+        model.setNumberOfGuests(event.target.value);
+    });
+
     sidebarView.sidebarItems.map(function(item) {
         var sidebarItemController = new SidebarItemController(item, model, app);
     });
