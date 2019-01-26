@@ -9,4 +9,3 @@ var DishItemController = function (dishItemView, model) {
         showDishDetailsScreen();
     })
 }
- 

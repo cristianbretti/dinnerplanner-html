@@ -7,9 +7,5 @@ var DinnerOverviewController = function (dinnerOverviewView, model) {
     dinnerOverviewView.printBtn.click(function() {
         showDinnerPrintoutScreen();
     });
-
-    dinnerOverviewView.dishItems.map(function(dishItemView) {
-        var dishItemController = new DishItemController(dishItemView, model);
-    })
 }
  

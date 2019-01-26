@@ -12,20 +12,30 @@
  * @param {Object} item - one dish item.
  */ 
 var DishSearchView = function (container, model) {
+    // Subscribe to model changes
+    model.addObserver(this);
 
+    // Find interactive elements
     this.searchBtn = container.find("#searchBtn");
     this.typeFilter = container.find("#typeFilter");
     this.textFilter = container.find("#textFilter");
-
-    var resultContainer = container.find("#resultContainer");
-    //var result = model.getAllDishes(this.typeFilter, this.textFilter);
-    var result = model.getAllDishes('starter');
-
+    this.resultContainer = container.find("#resultContainer");
     this.dishItems = [];
-    result.map(function(dish) {
-       var dishItemView = new DishItemView(resultContainer, dish);
-       this.dishItems.push(dishItemView);
-    }, this);
+    this.dishItemControllers = [];
 
-    
+    this.update = function() {
+        this.resultContainer.empty();
+        var result = model.getAllDishes(this.typeFilter.val(), this.textFilter.val());
+        this.dishItems = [];
+        this.dishItemControllers = [];
+        
+        result.map(function(dish) {
+        var dishItemView = new DishItemView(this.resultContainer, dish);
+        var dishItemController = new DishItemController(dishItemView, model);
+        this.dishItems.push(dishItemView);
+        this.dishItemControllers.push(dishItemController);
+        }, this);
+    }
+
+    this.update();
 }

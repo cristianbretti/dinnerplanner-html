@@ -12,60 +12,61 @@
  * @param {Object} model - the reference to the Dinner Model
  */ 
 var DishDetailsView = function (container, model) {
-
+    // Subscribe to model changes;
+    model.addObserver(this);
+    // Find interactive elements
     this.backToSearchBtn = container.find("#backToSearchBtn");
     this.addToMenuBtn = container.find("#addToMenuBtn");
+    this.nameOfDish = container.find("#dishName");
+    this.dishImage = container.find('#dishImage');
+    this.dishType = container.find('#dishType');
+    this.dishDescription = container.find('#dishDescription');
+    this.dishRecipe = container.find('#dishRecipeContainer');
+    this.totalCost = container.find('#totalCost');
 
-    var selectedDish = model.getDish(model.getDetailedDinner());
-    if (!selectedDish) {
-        return;
+    this.update = function() {
+        var selectedDish = model.getDish(model.getDetailedDinner());
+        if (!selectedDish) {
+            return;
+        }
+        var numberOfGuests = model.getNumberOfGuests();
+        //Set name
+        this.nameOfDish.html(selectedDish.name.toUpperCase());
+        //Set image
+        this.dishImage.attr("src", "images/" +  selectedDish.image);
+        // Set type
+        this.dishType.html("type: " + selectedDish.type);
+        //Set description
+        this.dishDescription.html(selectedDish.description);
+
+        //Set Ingredients
+        
+        var header = $('<div />').attr({
+            'class': 'text-center font-bold py-2',
+        }).html("INGREDIENTS FOR " + numberOfGuests + " PEOPLE");
+        this.dishRecipe.append(header);
+        this.dishRecipe.append($('<div/>').attr({'class': 'border border-black m-2'}))
+
+        var totalCost = 0;
+        selectedDish.ingredients.map(function(ingredient) {
+
+            var oneIngredientContainer = $('<div/>').attr({'class': 'flex px-4',});
+
+            var quantity = $('<div/>').attr({'class': 'flex-1',}).html(ingredient.quantity + " " + ingredient.unit);
+            var name = $('<div/>').attr({'class': 'flex-2',}).html(ingredient.name)
+            var price = $('<div/>').attr({'class': 'flex-1 text-right pr-1',}).html(ingredient.price);
+            var currency = $('<div/>').html(" SEK");
+
+            totalCost += ingredient.price;
+
+            oneIngredientContainer.append(quantity, name, price, currency);
+            this.dishRecipe.append(oneIngredientContainer);
+
+        }, this)
+
+        // Set total cost
+        this.totalCost.html(totalCost + " SEK");
     }
-    var numberOfGuests = model.getNumberOfGuests();
-
-    //Set name
-    var nameOfDish = container.find("#dishName");
-    nameOfDish.html(selectedDish.name.toUpperCase());
-
-    //Set image
-    var dishImage = container.find('#dishImage');
-    dishImage.attr("src", "images/" +  selectedDish.image);
-
-    // Set type
-    var dishType = container.find('#dishType');
-    dishType.html("type: " + selectedDish.type);
-
-    //Set description
-    var dishDescription = container.find('#dishDescription');
-    dishDescription.html(selectedDish.description);
-
-    //Set Ingredients
-    var dishRecipe = container.find('#dishRecipeContainer');
-    var header = $('<div />').attr({
-        'class': 'text-center font-bold py-2',
-    }).html("INGREDIENTS FOR " + numberOfGuests + " PEOPLE");
-    dishRecipe.append(header);
-    dishRecipe.append($('<div/>').attr({'class': 'border border-black m-2'}))
-
-    var totalCost = 0;
-    selectedDish.ingredients.map(function(ingredient) {
-
-        var oneIngredientContainer = $('<div/>').attr({'class': 'flex px-4',});
-
-        var quantity = $('<div/>').attr({'class': 'flex-1',}).html(ingredient.quantity + " " + ingredient.unit);
-        var name = $('<div/>').attr({'class': 'flex-2',}).html(ingredient.name)
-        var price = $('<div/>').attr({'class': 'flex-1 text-right pr-1',}).html(ingredient.price);
-        var currency = $('<div/>').html(" SEK");
-
-        totalCost += ingredient.price;
-
-        oneIngredientContainer.append(quantity, name, price, currency);
-        dishRecipe.append(oneIngredientContainer);
-
-    })
-
-    // Set total cost
-    var dishDescription = container.find('#totalCost');
-    dishDescription.html(totalCost + " SEK");
-	
+    this.update();
 }
  

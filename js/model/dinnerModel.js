@@ -5,10 +5,23 @@ var DinnerModel = function() {
 	// and selected dishes for the dinner menu
 	var numberOfGuests = 5;
 	var selectedDishes = [];
-	var detailedDinner = 1;
+	var detailedDinner = 0;
+	var observers = [];
+
+
+	this.addObserver = function(observer) {
+		observers.push(observer);
+	}
+	this.notifyObservers = function(obj) {
+		// TODO: performance boost by checking obj;
+		observers.map(function(observer) {
+			observer.update();
+		});
+	}
 
 	this.setNumberOfGuests = function(num) {
 		numberOfGuests = num;
+		this.notifyObservers();
 	}
 	
 	this.getNumberOfGuests = function() {
@@ -21,6 +34,7 @@ var DinnerModel = function() {
 
 	this.setDetailedDinner = function(id) {
 		detailedDinner = id;
+		this.notifyObservers();
 	}
 
 	//Returns the dish that is on the menu for selected type 
@@ -86,35 +100,40 @@ var DinnerModel = function() {
 		}
 
 		selectedDishes.push(dishToAdd);
+		this.notifyObservers();
 	}
 
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
 		selectedDishes = selectedDishes.filter(function(value, index, arr) {
 			return value.id !== id;
-		})
+		});
+		this.notifyObservers();
 	}
 
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	this.getAllDishes = function (type,filter) {
-	  return dishes.filter(function(dish) {
-		var found = true;
-		if(filter){
-			found = false;
-			dish.ingredients.forEach(function(ingredient) {
-				if(ingredient.name.indexOf(filter)!=-1) {
+	  	return dishes.filter(function(dish) {
+			var found = true;
+			if(filter) {
+				found = false;
+				dish.ingredients.forEach(function(ingredient) {
+					if(ingredient.name.indexOf(filter) !== -1) {
+						found = true;
+					}
+				});
+				if(dish.name.indexOf(filter) != -1)
+				{
 					found = true;
 				}
-			});
-			if(dish.name.indexOf(filter) != -1)
-			{
-				found = true;
 			}
-		}
-	  	return dish.type == type && found;
-	  });	
+			if (type === 'All') {
+				return found;
+			}
+			return dish.type === type && found;
+	  	});	
 	}
 
 	//function that returns a dish of specific ID
