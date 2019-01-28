@@ -20,7 +20,7 @@ var DinnerModel = function() {
 	}
 
 	this.setNumberOfGuests = function(num) {
-		numberOfGuests = num;
+		numberOfGuests = Math.max(num, 1);
 		this.notifyObservers();
 	}
 	
