@@ -141,7 +141,7 @@ var DinnerModel = function() {
 	  	});	
 	}
 
-	this.buildUrl = (type, filter) => {
+	this.buildSearchUrl = (type, filter) => {
 		var params = new URLSearchParams();
 		params.append('query', filter);
 		if (type !== 'all') params.append('type', type);
@@ -150,22 +150,55 @@ var DinnerModel = function() {
 		return 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?' + params.toString();
 	}
 
+	/**
+	 * Convert bad requests into errors and throw. 
+	 */
+	this.handleErrors = (response) => {
+		if (!response.ok) {
+			throw Error(response.statusText);
+		}
+		return response;
+	}
+
 	this.getAllDishes = (type, filter) => {
 		return fetch(
-				this.buildUrl(type, filter),
+				this.buildSearchUrl(type, filter),
 				{headers: {'X-Mashape-Key': '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767'}})
+			.then(this.handleErrors)
 			.then(response => response.json())
 			.then(data => data.results)
 			.catch(console.error);
 	}
 
 	//function that returns a dish of specific ID
-	this.getDish = function (id) {
-	  for(key in dishes){
-			if(dishes[key].id == id) {
-				return dishes[key];
-			}
-		}
+	this.getDish = (id) => {
+		return fetch(
+			'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/' + id + "/information",
+			{headers: {'X-Mashape-Key': '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767'}})
+		.then(this.handleErrors)
+		.then(response => response.json())
+		.then(data => {
+			var promm = data.extendedIngredients.map(ingred => {
+				console.log(ingred);
+				return fetch(
+					"https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/products/" + ingred.id,
+					{headers: {'X-Mashape-Key': '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767'}})
+				.then(this.handleErrors)
+				.then(response => response.json())
+				.then(details => {
+					console.log(details);
+					ingred.price = details.price;
+				})
+				.catch(error => {
+					ingred.price = '?';
+					console.error(error);
+				});
+			})
+			return Promise.all(promm).then(() => data);
+		})
+		.catch(error => {
+			console.error(error);
+		});
 	}
 
 
