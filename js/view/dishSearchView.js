@@ -29,9 +29,10 @@ var DishSearchView = function (container, model) {
     this.dishItemControllers = [];
 
     this.update = async function() {
-        console.log("Search update");
         this.resultContainer.empty();
+        var spinner = new SpinnerView(this.resultContainer);
         var result = await model.getAllDishes(this.typeFilter.val(), this.textFilter.val());
+        spinner.hide();
         this.dishItems = [];
         this.dishItemControllers = [];
         

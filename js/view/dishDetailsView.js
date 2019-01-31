@@ -26,10 +26,7 @@ var DishDetailsView = function (container, model) {
     this.dishRecipe = container.find('#dishRecipeContainer');
     this.totalCost = container.find('#totalCost');
     
-    var spinner = $('<div />')
-        .attr({'class': 'absolute pin bg-white flex flex-col justify-center', 'id': 'spinner'})
-        .html($('<div />').attr({'class': 'text-center'}).html("SPINNING..."));
-    container.append(spinner);
+    var spinner = new SpinnerView(container);
     spinner.hide();
 
     this.update =  async function() {
