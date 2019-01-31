@@ -6,13 +6,13 @@
 var DishItemView = function (container, dish) {
     var image = $('<img />').attr({
         'id': 'myImage'+dish.id,
-        'src': 'images/' + dish.image,
+        'src': 'https://spoonacular.com/recipeImages/' + dish.id + "-312x150.jpg",
         'class': 'h-full w-full',
     });
 
     var imageText = $('<div/>').attr({
         'class': 'imageText border-2 border-black text-center truncate text-sm',
-    }).text(dish.name);
+    }).text(dish.title);
 
     var imageContainer = $('<div />', {"class": 'imageContainer flex justify-center border-2 border-black',});
     imageContainer.append(image);

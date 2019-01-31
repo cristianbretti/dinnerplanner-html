@@ -19,13 +19,19 @@ var DishSearchView = function (container, model) {
     this.searchBtn = container.find("#searchBtn");
     this.typeFilter = container.find("#typeFilter");
     this.textFilter = container.find("#textFilter");
+    // fill in type options
+    model.getAllTypes().map(type => {
+        this.typeFilter.append($('<option />').html(type));
+    }, this);
+
     this.resultContainer = container.find("#resultContainer");
     this.dishItems = [];
     this.dishItemControllers = [];
 
-    this.update = function() {
+    this.update = async function() {
         this.resultContainer.empty();
-        var result = model.getAllDishes(this.typeFilter.val(), this.textFilter.val());
+        var result = await model.getAllDishes(this.typeFilter.val(), this.textFilter.val());
+        console.log(result);
         this.dishItems = [];
         this.dishItemControllers = [];
         
