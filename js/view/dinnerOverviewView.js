@@ -30,7 +30,7 @@ var DinnerOverviewView = function (container, model) {
             var dishItemController = new DishItemController(dishItemView, model);
             this.dishItems.push(dishItemView);
             this.dishItemControllers.push(dishItemController);
-            var costOfDish = $('<div/>').attr({'class': 'text-right pr-6'}).html(model.getDishPrice(dish.id) + " SEK")
+            var costOfDish = $('<div/>').attr({'class': 'text-right pr-6'}).html(model.getDishPrice(dish) + " SEK")
             dishItemWithPriceContainer.append(costOfDish);
             this.menuDishesContainer.append(dishItemWithPriceContainer)
         }, this);   

@@ -26,7 +26,7 @@ var SidebarView = function (container, model) {
         this.sidebarItems = [];
         this.sidebarItemControllers = [];
         selectedDishes.map(function(dish) {
-            var price = model.getDishPrice(dish.id);
+            var price = model.getDishPrice(dish);
             var sidebarItem = new SidebarItemView(this.selectedDishesNameAndPriceContainer, dish, price);
             var sidebarItemController = new SidebarItemController(sidebarItem, model);
             this.sidebarItems.push(sidebarItem);

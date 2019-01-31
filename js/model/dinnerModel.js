@@ -13,6 +13,7 @@ var DinnerModel = function() {
 	this.addObserver = function(observer) {
 		observers.push(observer);
 	}
+	
 	this.notifyObservers = function(obj) {
 		// TODO: performance boost by checking obj;
 		observers.map(function(observer) {
@@ -54,47 +55,32 @@ var DinnerModel = function() {
 		return selectedDishes;
 	}
 
-	//Returns all ingredients for all the dishes on the menu.
-	this.getAllIngredients = function() {
-		var allIngredients = [];
-		selectedDishes.map(function(dish) {
-			allIngredients = allIngredients.concat(dish.ingredients);
-		});
-		return allIngredients;
-	}
-
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
-		var allIngredients = this.getAllIngredients();
 		var totalPrice = 0;
-		allIngredients.map(function(ingredient) {
-			totalPrice += ingredient.price;
+		selectedDishes.map((dish) => {
+			totalPrice += dish.extendedIngredients.map((ingredient) => ingredient.price).filter((x) => !isNaN(x)).reduce((a,b)=> a+b,0);
 		});
 		return totalPrice * numberOfGuests;
 	}
 
 	//Returns the price of the dish times number of guests
 	/**
-	 * @param {Number} id id of the disdh 
+	 * @param {Object} dish id of the disdh 
 	 * @returns {Number} the price of the dish times number of guest
 	 */
-	this.getDishPrice = function(id) {
-		var dish = this.getDish(id)
+	this.getDishPrice = function(dish) {
 		var price = 0;
-		dish.ingredients.map(ingredient => {
-			price += ingredient.price;
+		dish.extendedIngredients.map(ingredient => {
+			price += isNaN(ingredient.price) ? 0 : ingredient.price;
 		})
 		return price * numberOfGuests;
 	}	
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
-	this.addDishToMenu = function(id) {
-
-		var dishToAdd = dishes.find(function(dish) {
-			return dish.id === id;
-		});
-
+	this.addDishToMenu = function(dish) {
+		var dishToAdd = dish;
 
 		var existingDishWithSameType = selectedDishes.find(function(dish) {
 			return dish.type === dishToAdd.type;
@@ -179,18 +165,15 @@ var DinnerModel = function() {
 		.then(response => response.json())
 		.then(data => {
 			var promm = data.extendedIngredients.map(ingred => {
-				console.log(ingred);
 				return fetch(
 					"https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/products/" + ingred.id,
 					{headers: {'X-Mashape-Key': '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767'}})
 				.then(this.handleErrors)
 				.then(response => response.json())
 				.then(details => {
-					console.log(details);
 					ingred.price = details.price;
 				})
 				.catch(error => {
-					ingred.price = '?';
 					console.error(error);
 				});
 			})

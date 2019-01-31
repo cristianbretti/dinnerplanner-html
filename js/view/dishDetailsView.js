@@ -14,6 +14,8 @@
 var DishDetailsView = function (container, model) {
     // Subscribe to model changes;
     model.addObserver(this);
+    // class variables
+    this.selectedDish = null;
     // Find interactive elements
     this.backToSearchBtn = container.find("#backToSearchBtn");
     this.addToMenuBtn = container.find("#addToMenuBtn");
@@ -23,24 +25,34 @@ var DishDetailsView = function (container, model) {
     this.dishDescription = container.find('#dishDescription');
     this.dishRecipe = container.find('#dishRecipeContainer');
     this.totalCost = container.find('#totalCost');
+    
+    var spinner = $('<div />')
+        .attr({'class': 'absolute pin bg-white flex flex-col justify-center', 'id': 'spinner'})
+        .html($('<div />').attr({'class': 'text-center'}).html("SPINNING..."));
+    container.append(spinner);
+    spinner.hide();
 
-    this.update = async function() {
-        this.dishRecipe.empty();
+    this.update =  async function() {
         // TODO show spinner
-        if (!model.getDetailedDinner()) {
+        if ((this.selectedDish !== null && model.getDetailedDinner() !== this.selectedDish.id) || (model.getDetailedDinner() !== 0 && this.selectedDish === null)) {
+            spinner.show();
+            this.selectedDish = await model.getDish(model.getDetailedDinner());
+            spinner.hide();
+        } else {
             return;
         }
-        var selectedDish = await model.getDish(model.getDetailedDinner());
+
+        this.dishRecipe.empty();
         
         var numberOfGuests = model.getNumberOfGuests();
         //Set name
-        this.nameOfDish.html(selectedDish.title.toUpperCase());
+        this.nameOfDish.html(this.selectedDish.title.toUpperCase());
         //Set image
-        this.dishImage.attr("src", selectedDish.image);
+        this.dishImage.attr("src", this.selectedDish.image);
         // Set type
-        this.dishType.html("type: TODO");
+        this.dishType.html("Ready in " + this.selectedDish.readyInMinutes + " minutes");
         //Set description
-        this.dishDescription.html(selectedDish.instructions);
+        this.dishDescription.html(this.selectedDish.instructions);
 
         //Set Ingredients
         
@@ -51,11 +63,11 @@ var DishDetailsView = function (container, model) {
         this.dishRecipe.append($('<div/>').attr({'class': 'border border-black m-2'}))
 
         var totalCost = 0;
-        selectedDish.extendedIngredients.map(function(ingredient) {
+        this.selectedDish.extendedIngredients.map(function(ingredient) {
             var oneIngredientContainer = $('<div/>').attr({'class': 'flex px-4',});
 
             var quantityNumber = Math.round(ingredient.amount*numberOfGuests);
-            var priceNumber = isNaN(ingredient.price) ? ingredient.price : Math.round(ingredient.price*numberOfGuests);
+            var priceNumber = isNaN(ingredient.price) ? '?' : Math.round(ingredient.price*numberOfGuests);
 
             var quantity = $('<div/>').attr({'class': 'flex-1',}).html(quantityNumber + " " + ingredient.measures.metric.unitShort);
             var name = $('<div/>').attr({'class': 'flex-2 pl-1',}).html(ingredient.name)

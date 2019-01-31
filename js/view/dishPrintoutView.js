@@ -16,8 +16,8 @@ var DishPrintoutView = function (container, dish) {
 
     var image = $('<img />').attr({
         'id': 'myImage'+dish.id,
-        'src': 'images/' + dish.image,
-        'class': ' ',
+        'src': dish.image,
+        'class': 'w-2/3 h-2/3',
     });
 
     var nameAndTypeContainer =  $('<div/>').attr({
@@ -26,32 +26,36 @@ var DishPrintoutView = function (container, dish) {
 
     var name = $('<div/>').attr({
         'class': 'text-xl font-bold'
-    }).html(dish.name.toUpperCase())
+    }).html(dish.title.toUpperCase());
+
+    var readyInMinutes = $('<div/>').attr({
+        'class': 'font-bold'
+    }).html('Ready in ' + dish.readyInMinutes + ' minutes');
 
     var type = $('<div/>').attr({
         'class': 'pt-1'
     }).html(dish.type)
 
-    nameAndTypeContainer.append(name, type);
+    nameAndTypeContainer.append(name, type, readyInMinutes);
     imageAndNameContainer.append(image, nameAndTypeContainer);
 
-    //Right side with preperation
-    var preperationDiv = $('<div/>').attr({
+    //Right side with instructions
+    var instructionsDiv = $('<div/>').attr({
         'class': 'flex-1 m-6'
     })
 
-    var preperationHeader = $('<div/>').attr({
+    var instructionsHeader = $('<div/>').attr({
         'class': 'text-xl font-bold'
     }).html('PREPARATION')
 
-    var preperationText = $('<div/>').attr({
+    var instructionsText = $('<div/>').attr({
         'class': 'pt-1'
-    }).html(dish.description)
+    }).html(dish.instructions)
 
-    preperationDiv.append(preperationHeader, preperationText);
+    instructionsDiv.append(instructionsHeader, instructionsText);
 
 
-    rowDiv.append(imageAndNameContainer, preperationDiv)
+    rowDiv.append(imageAndNameContainer, instructionsDiv)
 
     container.append(rowDiv);
 }

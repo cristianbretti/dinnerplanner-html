@@ -13,7 +13,7 @@
  */ 
 var DishSearchView = function (container, model) {
     // Subscribe to model changes
-    model.addObserver(this);
+    // model.addObserver(this);
 
     // Find interactive elements
     this.searchBtn = container.find("#searchBtn");
@@ -29,9 +29,9 @@ var DishSearchView = function (container, model) {
     this.dishItemControllers = [];
 
     this.update = async function() {
+        console.log("Search update");
         this.resultContainer.empty();
         var result = await model.getAllDishes(this.typeFilter.val(), this.textFilter.val());
-        console.log(result);
         this.dishItems = [];
         this.dishItemControllers = [];
         

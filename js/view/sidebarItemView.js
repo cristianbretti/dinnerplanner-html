@@ -8,7 +8,7 @@ var SidebarItemView = function (container, dish, price) {
         'class': 'flex justify-between bg-orange m-1 p-1 border border-black',
     });
 
-    this.nameOfDish = $('<div/>').attr('class', "flex-1").html(dish.name);
+    this.nameOfDish = $('<div/>').attr('class', "flex-1").html(dish.title);
     this.priceOfDish = $('<div/>').attr('class', "").html(price);
     this.deleteDishBtn = $('<button/>')
         .attr('id', "deleteDishBtn")

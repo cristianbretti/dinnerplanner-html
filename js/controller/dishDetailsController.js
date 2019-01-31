@@ -8,7 +8,7 @@ var DishDetailsController = function (dishDetailsView, model) {
         showDishSearchScreen();
     });
     dishDetailsView.addToMenuBtn.click(function() {
-        model.addDishToMenu(model.getDetailedDinner());
+        model.addDishToMenu(dishDetailsView.selectedDish);
     });
 }
  
