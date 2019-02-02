@@ -79,12 +79,19 @@ var DinnerModel = function() {
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
-	this.addDishToMenu = function(dish) {
-		var dishToAdd = dish;
-
+	this.addDishToMenu = function(dishToAdd) {
+		console.log(dishToAdd);
 		var existingDishWithSameType = selectedDishes.find(function(dish) {
-			return dish.type === dishToAdd.type;
+			var intersection =  dish.dishTypes.filter(x => dishToAdd.dishTypes.includes(x));
+			console.log(intersection);
+			if (intersection.length > 0) {
+				console.log(intersection);
+				return true;
+			}
+			return false;
 		});
+
+		console.log(existingDishWithSameType);
 
 		if(existingDishWithSameType){
 			this.removeDishFromMenu(existingDishWithSameType.id);
