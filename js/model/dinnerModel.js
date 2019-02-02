@@ -163,8 +163,8 @@ var DinnerModel = function() {
 			.then(response => response.json())
 			.then(data => data.results)
 			.catch(error => {
-				errors.push({code: error.status, statusText: error.statusText, details: "Could not execute search"});
-				this.notifyObservers("ERROR-LIST");
+				this.addError(this.createError(error, "Could not execute search"));
+
 			});
 	}
 
@@ -186,21 +186,39 @@ var DinnerModel = function() {
 					ingred.price = details.price;
 				})
 				.catch(error => {
-					errors.push({code: error.status, statusText: error.statusText, details: "Could not find price for " + ingred.name});
-					this.notifyObservers("ERROR-LIST");
+					this.addError(this.createError(error, "Could not find price for " + ingred.name));
+	
 				});
 			})
 			return Promise.all(promm).then(() => data);
 		})
 		.catch(error => {
-			errors.push({code: error.status, statusText: error.statusText, details: "Could not get recipe"});
-			this.notifyObservers("ERROR-LIST");
+			this.addError(this.createError(error, "Could not get recipe"));
 		});
 	}
 
 	this.getErrors = () => {
 		return errors;
 	}
+
+	this.addError = (error) => {
+		errors.push(error);
+		this.notifyObservers("ERROR-LIST");
+	}
+
+	this.removeError = (id) => {
+		errors = errors.filter(error => error.id !== id);
+		this.notifyObservers("ERROR-LIST");
+	}
+
+	this.createError = (error, details) => (
+		{
+			code: error.status,
+			statusText: error.statusText,
+			id: error.url,
+			details,
+		}
+	)
 
 	// the dishes variable contains an array of all the 
 	// dishes in the database. each dish has id, name, type,

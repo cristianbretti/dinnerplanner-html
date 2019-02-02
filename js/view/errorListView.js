@@ -7,14 +7,13 @@ var ErrorListView = function (container, model) {
     // Subsribe to model
     model.addObserver({view: this, id: "ERROR-LIST"});
 
+
     this.update = function() {
+        container.empty();
         var errors = model.getErrors();
         errors.map(error => {
-            console.log("ERROR:");
-            console.log(error.code);
-            console.log(error.statusText);
-            console.log(error.details);
-            
+            var errorItemView = new ErrorItemView(container, error);
+            var errorItemController = new ErrorItemController(errorItemView, model);
         })
     }
     this.update()
