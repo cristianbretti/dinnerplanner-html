@@ -14,6 +14,24 @@
   </head>
   <body>
 		<div class="h-screen">
+			<div class="fixed pin-t pin-r w-48 md:w-64 text-white">
+				<!-- populated by errorListView-->
+				<div class="bg-red-light border-2 border-red rounded shadow-md my-2">
+					<div class="flex justify-between">
+						<div>
+							<div class="text-sm md:text-lg font-bold">
+								Error: <span id="code">404 unauthorized</span>
+							</div>
+							<div id="details" class="text-xs md:text-base">
+								Could not find price for: Anchovis chili pepper
+							</div>
+						</div>
+						<div class="px-2 flex flex-col justify-center">
+							<i  id="remove" class="fa fa-remove p-1 hover:bg-white hover:text-red rounded"></i>
+						</div>
+					</div>
+				</div>
+			</div>
 			<!-- Header-->
 			<h1 class="header text-center bg-orange-light flex flex-col justify-center">
 					Dinner planner
