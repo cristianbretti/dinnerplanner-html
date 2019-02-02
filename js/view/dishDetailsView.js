@@ -30,7 +30,6 @@ var DishDetailsView = function (container, model) {
     spinner.hide();
 
     this.update =  async function() {
-        // TODO show spinner
         if ((this.selectedDish !== null && model.getDetailedDinner() !== this.selectedDish.id) || (model.getDetailedDinner() !== 0 && this.selectedDish === null)) {
             spinner.show();
             this.selectedDish = await model.getDish(model.getDetailedDinner());
