@@ -5,7 +5,7 @@
  */ 
 var SidebarView = function (container, model) {  
     // Subscribe to model changes
-    model.addObserver(this);
+    model.addObserver({view: this, id: "SIDEBAR"});
 
     // Find interactive elements
     this.confirmDinnerBtn = container.find("#confirmDinnerBtn");

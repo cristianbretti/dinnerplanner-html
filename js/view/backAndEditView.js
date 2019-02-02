@@ -5,7 +5,7 @@
  */ 
 var BackAndEditView = function (container, model) {
     // Subscribe to model
-    model.addObserver(this);
+    model.addObserver({view: this, id: "BACK-AND-EDIT"});
     // Find interactive elements
     this.numberOfGuests = container.find("#numberOfGuests");
     this.backAndEditBtn = container.find("#backAndEditBtn");

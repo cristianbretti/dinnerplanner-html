@@ -13,7 +13,7 @@
  */ 
 var DinnerOverviewView = function (container, model) {
     // Subsribe to model 
-    model.addObserver(this);
+    model.addObserver({view: this, id: "DINNER-OVERVIEW"});
     // Find interactive elements
     this.printBtn = container.find("#printBtn");
     this.menuDishesContainer = container.find('#menuDishesContainer');

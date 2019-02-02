@@ -5,6 +5,8 @@ $(function() {
 	// And create the instance of ExampleView
 	// var exampleView = new ExampleView($("#exampleView"));
 
+	var errorListView = new ErrorListView($("#errorList"), model);
+
 	var homeView = new HomeView($("#homeView"));
 	var homeController = new HomeController(homeView, model);
 

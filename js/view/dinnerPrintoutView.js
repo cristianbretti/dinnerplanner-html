@@ -5,7 +5,7 @@
  */ 
 var DinnerPrintoutView = function (container, model) {
     // Subscribe to model
-    model.addObserver(this);
+    model.addObserver({view: this, id: "DINNER-PRINTOUT"});
 
     this.update = function() {
         container.empty();

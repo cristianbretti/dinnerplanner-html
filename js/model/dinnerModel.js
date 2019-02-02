@@ -7,6 +7,7 @@ var DinnerModel = function() {
 	var selectedDishes = [];
 	var detailedDinner = 0;
 	var observers = [];
+	var errors = [];
 
 	var types = ["all", "main course", "side dish", "dessert", "appetizer", "salad", "bread", "breakfast", "soup", "beverage", "sauce", "drink"];
 
@@ -14,10 +15,16 @@ var DinnerModel = function() {
 		observers.push(observer);
 	}
 	
-	this.notifyObservers = function(obj) {
+	this.notifyObservers = function(id) {
+		if(id === "ERROR-LIST"){
+			var errorListView = observers.find(view => view.id === "ERROR-LIST");
+			errorListView.view.update();
+			return;
+		}
+		
 		// TODO: performance boost by checking obj;
 		observers.map(function(observer) {
-			observer.update();
+			observer.view.update();
 		});
 	}
 
@@ -143,7 +150,7 @@ var DinnerModel = function() {
 	 */
 	this.handleErrors = (response) => {
 		if (!response.ok) {
-			throw Error(response.statusText);
+			throw response;
 		}
 		return response;
 	}
@@ -155,7 +162,10 @@ var DinnerModel = function() {
 			.then(this.handleErrors)
 			.then(response => response.json())
 			.then(data => data.results)
-			.catch(console.error);
+			.catch(error => {
+				errors.push({code: error.status, statusText: error.statusText, details: "Could not execute search"});
+				this.notifyObservers("ERROR-LIST");
+			});
 	}
 
 	//function that returns a dish of specific ID
@@ -176,16 +186,21 @@ var DinnerModel = function() {
 					ingred.price = details.price;
 				})
 				.catch(error => {
-					console.error(error);
+					errors.push({code: error.status, statusText: error.statusText, details: "Could not find price for " + ingred.name});
+					this.notifyObservers("ERROR-LIST");
 				});
 			})
 			return Promise.all(promm).then(() => data);
 		})
 		.catch(error => {
-			console.error(error);
+			errors.push({code: error.status, statusText: error.statusText, details: "Could not get recipe"});
+			this.notifyObservers("ERROR-LIST");
 		});
 	}
 
+	this.getErrors = () => {
+		return errors;
+	}
 
 	// the dishes variable contains an array of all the 
 	// dishes in the database. each dish has id, name, type,

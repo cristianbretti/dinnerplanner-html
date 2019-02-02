@@ -13,7 +13,7 @@
  */ 
 var DishDetailsView = function (container, model) {
     // Subscribe to model changes;
-    model.addObserver(this);
+    model.addObserver({view: this, id: "DISH-DETAILS"});
     // class variables
     this.selectedDish = null;
     // Find interactive elements
