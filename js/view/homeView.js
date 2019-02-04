@@ -13,5 +13,12 @@
  */ 
 var HomeView = function (container, model) {
     this.createNewDinnerBtn = container.find("#createNewBtn"); 
+
+    this.hide = () => {
+        container.hide();
+    }   
+    this.show = () => {
+        container.show();
+    }
 }
  

@@ -7,6 +7,13 @@ var DinnerPrintoutView = function (container, model) {
     // Subscribe to model
     model.addObserver({view: this, id: "DINNER-PRINTOUT"});
 
+    this.hide = () => {
+        container.hide();
+    }
+    this.show = () => {
+        container.show();
+    }
+
     this.update = function() {
         container.empty();
         var menu = model.getFullMenu();

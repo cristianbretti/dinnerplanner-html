@@ -16,6 +16,13 @@ var SidebarView = function (container, model) {
     this.totalPriceContainer = container.find("#totalCost");
     this.sidebarItems = [];
     this.sidebarItemControllers = [];
+
+    this.hide = () => {
+        container.hide();
+    }
+    this.show = () => {
+        container.show();
+    }
     
     this.update = function() {
         this.numberOfGuestsInput.attr('value', model.getNumberOfGuests());

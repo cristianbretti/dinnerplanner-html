@@ -19,6 +19,13 @@ var DinnerOverviewView = function (container, model) {
     this.menuDishesContainer = container.find('#menuDishesContainer');
     this.totalPrice = container.find('#totalPrice');
 
+    this.hide = () => {
+        container.hide();
+    }
+    this.show = () => {
+        container.show();
+    }
+
     this.update = function() {
         this.menuDishesContainer.empty();
         var menu = model.getFullMenu();

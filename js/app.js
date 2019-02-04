@@ -1,14 +1,14 @@
 $(function() {
 	//We instantiate our model
 	var model = new DinnerModel();
-	
-	// And create the instance of ExampleView
-	// var exampleView = new ExampleView($("#exampleView"));
 
+	// Error view
 	var errorListView = new ErrorListView($("#errorListContainer"), model);
 
 	var homeView = new HomeView($("#homeView"));
 	var homeController = new HomeController(homeView, model);
+
+	var selectDishScreen = $("#selectDishScreen");
 
 	// Left Panel
 	var sidebarView = new SidebarView($("#sidebarContainer"), model);
@@ -35,44 +35,44 @@ $(function() {
 	
 	// Default show
 	hideAll = function() {
-		$("#homeView").hide();
-		$("#selectDishScreen").hide();
+		homeView.hide();
+		selectDishScreen.hide();
 
-		$("#sidebarContainer").hide();
-		$("#dishSearchContainer").hide();
-		$("#dishDetailsContainer").hide();
+		sidebarView.hide();
+		dishSearchView.hide();
+		dishDetailsView.hide();
 
-		$("#backAndEditContainer").hide();
-		$('#dinnerOverviewContainer').hide();
-		$("#dinnerPrintoutContainer").hide();
+		backAndEditView.hide();
+		dinnerOverviewView.hide();
+		dinnerPrintoutView.hide();
 	}
 
 	showHomeScreen = function() {
 		hideAll();
-		$("#homeView").show();
+		homeView.show();
 	}
 
 	showDishSearchScreen = function() {
 		hideAll();
-		$("#selectDishScreen").show();
-		$("#sidebarContainer").show();
-		$("#dishSearchContainer").show();
+		selectDishScreen.show();
+		sidebarView.show();
+		dishSearchView.show();
 	}
 	showDishDetailsScreen = function() {
 		hideAll();
-		$("#selectDishScreen").show();
-		$("#sidebarContainer").show();
-		$("#dishDetailsContainer").show();
+		selectDishScreen.show();
+		sidebarView.show();
+		dishDetailsView.show();
 	}
 	showDinnerOverviewScreen = function() {
 		hideAll();
-		$("#backAndEditContainer").show();
-		$('#dinnerOverviewContainer').show();
+		backAndEditView.show();
+		dinnerOverviewView.show();
 	}
 	showDinnerPrintoutScreen = function() {
 		hideAll();
-		$("#backAndEditContainer").show();
-		$('#dinnerPrintoutContainer').show();
+		backAndEditView.show();
+		dinnerPrintoutView.show();
 	}
 
 	showHomeScreen();

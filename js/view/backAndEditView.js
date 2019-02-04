@@ -10,6 +10,13 @@ var BackAndEditView = function (container, model) {
     this.numberOfGuests = container.find("#numberOfGuests");
     this.backAndEditBtn = container.find("#backAndEditBtn");
 
+    this.hide = () => {
+        container.hide();
+    }
+    this.show = () => {
+        container.show();
+    }
+
     this.update = function() {
         this.numberOfGuests.html(model.getNumberOfGuests());
     }

@@ -28,6 +28,13 @@ var DishSearchView = function (container, model) {
     this.dishItems = [];
     this.dishItemControllers = [];
 
+    this.hide = () => {
+        container.hide();
+    }
+    this.show = () => {
+        container.show();
+    }
+
     this.update = async function() {
         this.resultContainer.empty();
         var spinner = new SpinnerView(this.resultContainer);
