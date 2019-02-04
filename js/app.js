@@ -75,9 +75,5 @@ $(function() {
 		$('#dinnerPrintoutContainer').show();
 	}
 
-	showHomeScreen(); // done
-	// showDishSearchScreen(); // done
-	// showDishDetailsScreen(); // done
-	// showDinnerOverviewScreen(); // done
-	// showDinnerPrintoutScreen(); // done
+	showHomeScreen();
 });
