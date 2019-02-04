@@ -9,9 +9,8 @@ var SidebarView = function (container, model) {
 
     // Find interactive elements
     this.confirmDinnerBtn = container.find("#confirmDinnerBtn");
-    container.find("#hamburgerToggle").click(function() {
-        container.find('#sidebarContent').toggle();
-    });
+    this.sidebarContent = container.find('#sidebarContent');
+    this.hamburgerToggle = container.find("#hamburgerToggle");
     this.numberOfGuestsInput = container.find('#numberOfGuestsInput');
     this.selectedDishesNameAndPriceContainer = container.find('#selectedDishesNameAndPriceContainer');
     this.totalPriceContainer = container.find("#totalCost");

@@ -11,5 +11,9 @@ var SidebarController = function (sidebarView, model) {
     sidebarView.numberOfGuestsInput.change(function(event) {
         model.setNumberOfGuests(event.target.value);
     });
+
+    sidebarView.hamburgerToggle.click(function() {
+        sidebarView.sidebarContent.toggle();
+    })
 }
  
