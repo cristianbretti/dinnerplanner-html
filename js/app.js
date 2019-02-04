@@ -1,4 +1,5 @@
 $(function() {
+	var generalController = new GeneralController();
 	//We instantiate our model
 	var model = new DinnerModel();
 
@@ -6,74 +7,46 @@ $(function() {
 	var errorListView = new ErrorListView($("#errorListContainer"), model);
 
 	var homeView = new HomeView($("#homeView"));
-	var homeController = new HomeController(homeView, model);
+	generalController.addView(homeView);
+	var homeController = new HomeController(homeView, model, generalController);
 
 	var selectDishScreen = $("#selectDishScreen");
+	generalController.addView(selectDishScreen);
 
 	// Left Panel
 	var sidebarView = new SidebarView($("#sidebarContainer"), model);
-	var sidebarController = new SidebarController(sidebarView, model);
+	generalController.addView(sidebarView);
+	var sidebarController = new SidebarController(sidebarView, model, generalController);
 
 	// Search result
-	var dishSearchView = new DishSearchView($("#dishSearchContainer"), model);
-	var dishSearchController = new DishSearchController(dishSearchView, model);
+	var dishSearchView = new DishSearchView($("#dishSearchContainer"), model, generalController);
+	generalController.addView(dishSearchView);
+	var dishSearchController = new DishSearchController(dishSearchView, model, generalController);
 
 	// Dish detail
 	var dishDetailsView = new DishDetailsView($("#dishDetailsContainer"), model);
-	var dishDetailsController = new DishDetailsController(dishDetailsView, model);
+	generalController.addView(dishDetailsView);
+	var dishDetailsController = new DishDetailsController(dishDetailsView, model, generalController);
 
 	// Back and edit Panel
 	var backAndEditView = new BackAndEditView($("#backAndEditContainer"), model);
-	var backAndEditController = new BackAndEditController(backAndEditView, model);
+	generalController.addView(backAndEditView);
+	var backAndEditController = new BackAndEditController(backAndEditView, model, generalController);
 
 	// Dinner overview
 	var dinnerOverviewView = new DinnerOverviewView($("#dinnerOverviewContainer"), model);
-	var dinnerOverviewController = new DinnerOverviewController(dinnerOverviewView, model);
+	generalController.addView(dinnerOverviewView);
+	var dinnerOverviewController = new DinnerOverviewController(dinnerOverviewView, model, generalController);
 
 	// Dinner printout
 	var dinnerPrintoutView = new DinnerPrintoutView($("#dinnerPrintoutContainer"), model);
-	
-	// Default show
-	hideAll = function() {
-		homeView.hide();
-		selectDishScreen.hide();
+	generalController.addView(dinnerPrintoutView);
 
-		sidebarView.hide();
-		dishSearchView.hide();
-		dishDetailsView.hide();
+	generalController.addScreen('home', [homeView]);
+	generalController.addScreen('search', [selectDishScreen, sidebarView, dishSearchView]);
+	generalController.addScreen('details', [selectDishScreen, sidebarView, dishDetailsView]);
+	generalController.addScreen('overview', [backAndEditView, dinnerOverviewView]);
+	generalController.addScreen('printout', [backAndEditView, dinnerPrintoutView]);
 
-		backAndEditView.hide();
-		dinnerOverviewView.hide();
-		dinnerPrintoutView.hide();
-	}
-
-	showHomeScreen = function() {
-		hideAll();
-		homeView.show();
-	}
-
-	showDishSearchScreen = function() {
-		hideAll();
-		selectDishScreen.show();
-		sidebarView.show();
-		dishSearchView.show();
-	}
-	showDishDetailsScreen = function() {
-		hideAll();
-		selectDishScreen.show();
-		sidebarView.show();
-		dishDetailsView.show();
-	}
-	showDinnerOverviewScreen = function() {
-		hideAll();
-		backAndEditView.show();
-		dinnerOverviewView.show();
-	}
-	showDinnerPrintoutScreen = function() {
-		hideAll();
-		backAndEditView.show();
-		dinnerPrintoutView.show();
-	}
-
-	showHomeScreen();
+	generalController.showScreen('home');
 });

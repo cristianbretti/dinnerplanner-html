@@ -3,8 +3,8 @@
  * @param {Object} homeView - the HomeView object
  * @param {Object} model - the reference to the Dinner Model.
  */ 
-var HomeController = function (homeView, model) {
+var HomeController = function (homeView, model, gc) {
     homeView.createNewDinnerBtn.click(function() {
-        showDishSearchScreen();
+        gc.showScreen('search');
     });
 }
