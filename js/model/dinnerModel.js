@@ -66,9 +66,9 @@ var DinnerModel = function() {
 	this.getTotalMenuPrice = function() {
 		var totalPrice = 0;
 		selectedDishes.map((dish) => {
-			totalPrice += dish.extendedIngredients.map((ingredient) => ingredient.price).filter((x) => !isNaN(x)).reduce((a,b)=> a+b,0);
+			totalPrice += this.getDishPrice(dish);
 		});
-		return totalPrice * numberOfGuests;
+		return totalPrice;
 	}
 
 	//Returns the price of the dish times number of guests
@@ -79,9 +79,9 @@ var DinnerModel = function() {
 	this.getDishPrice = function(dish) {
 		var price = 0;
 		dish.extendedIngredients.map(ingredient => {
-			price += isNaN(ingredient.price) ? 0 : ingredient.price;
+			price += Math.round(ingredient.amount*numberOfGuests);
 		})
-		return price * numberOfGuests;
+		return price;
 	}	
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
@@ -175,23 +175,6 @@ var DinnerModel = function() {
 			{headers: {'X-Mashape-Key': '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767'}})
 		.then(this.handleErrors)
 		.then(response => response.json())
-		.then(data => {
-			var promm = data.extendedIngredients.map(ingred => {
-				return fetch(
-					"https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/products/" + ingred.id,
-					{headers: {'X-Mashape-Key': '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767'}})
-				.then(this.handleErrors)
-				.then(response => response.json())
-				.then(details => {
-					ingred.price = details.price;
-				})
-				.catch(error => {
-					this.addError(this.createError(error, "Could not find price for " + ingred.name));
-	
-				});
-			})
-			return Promise.all(promm).then(() => data);
-		})
 		.catch(error => {
 			this.addError(this.createError(error, "Could not get recipe"));
 		});

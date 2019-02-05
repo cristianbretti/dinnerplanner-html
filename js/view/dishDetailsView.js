@@ -15,7 +15,7 @@ var DishDetailsView = function (container, model) {
     // Subscribe to model changes;
     model.addObserver({view: this, id: "DISH-DETAILS"});
     // class variables
-    this.selectedDish = null;
+    this.selectedDish = {id:0};
     // Find interactive elements
     this.backToSearchBtn = container.find("#backToSearchBtn");
     this.addToMenuBtn = container.find("#addToMenuBtn");
@@ -37,12 +37,17 @@ var DishDetailsView = function (container, model) {
     }
 
     this.update =  async function() {
-        if ((this.selectedDish !== null && model.getDetailedDinner() !== this.selectedDish.id) || (model.getDetailedDinner() !== 0 && this.selectedDish === null)) {
+        var detailedDinnerIsNotChosen = model.getDetailedDinner() === 0;
+                
+        if(detailedDinnerIsNotChosen){
+            return;
+        }
+
+        var modelDinnerNotSameAsThisDinner = model.getDetailedDinner() !== this.selectedDish.id;
+        if (modelDinnerNotSameAsThisDinner) {
             spinner.show();
             this.selectedDish = await model.getDish(model.getDetailedDinner());
             spinner.hide();
-        } else {
-            return;
         }
 
         this.dishRecipe.empty();
@@ -70,7 +75,7 @@ var DishDetailsView = function (container, model) {
             var oneIngredientContainer = $('<div/>').attr({'class': 'flex px-4',});
 
             var quantityNumber = Math.round(ingredient.amount*numberOfGuests);
-            var priceNumber = isNaN(ingredient.price) ? '?' : Math.round(ingredient.price*numberOfGuests);
+            var priceNumber = quantityNumber;
 
             var quantity = $('<div/>').attr({'class': 'flex-1',}).html(quantityNumber + " " + ingredient.measures.metric.unitShort);
             var name = $('<div/>').attr({'class': 'flex-2 pl-1',}).html(ingredient.name)
