@@ -164,7 +164,6 @@ var DinnerModel = function() {
 			.then(data => data.results)
 			.catch(error => {
 				this.addError(this.createError(error, "Could not execute search"));
-
 			});
 	}
 
@@ -185,6 +184,7 @@ var DinnerModel = function() {
 	}
 
 	this.addError = (error) => {
+		if (errors.find(e => e.id === error.id)) return;
 		errors.push(error);
 		this.notifyObservers("ERROR-LIST");
 	}
@@ -194,14 +194,23 @@ var DinnerModel = function() {
 		this.notifyObservers("ERROR-LIST");
 	}
 
-	this.createError = (error, details) => (
-		{
+	this.createError = (error, details) => {
+		if (error.status === undefined) {
+			return {
+				code: '',
+				statusText: error,
+				id: 'NoInternet',
+				details,
+			}
+		}
+		
+		return {
 			code: error.status,
 			statusText: error.statusText,
 			id: error.url,
 			details,
 		}
-	)
+	}
 
 	// the dishes variable contains an array of all the 
 	// dishes in the database. each dish has id, name, type,

@@ -13,7 +13,7 @@ var ErrorItemView = function (container, error) {
    
     var errorRow = $("<div/>").attr({
         "class": "text-sm md:text-lg font-bold"
-    }).html("Error: " + error.code + " " + error.statusText);
+    }).html(error.code + " " + error.statusText);
 
     var detailsRow = $("<div/>").attr({
         "class": "text-xs md:text-base"
