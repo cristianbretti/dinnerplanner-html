@@ -8,7 +8,6 @@ var DishDetailsController = function (dishDetailsView, model, gc) {
         gc.showScreen('search');
     });
     dishDetailsView.addToMenuBtn.click(function() {
-        console.log(dishDetailsView.selectedDish);
         model.addDishToMenu(dishDetailsView.selectedDish);
     });
 }
