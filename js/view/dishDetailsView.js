@@ -47,6 +47,11 @@ var DishDetailsView = function (container, model) {
         if (modelDinnerNotSameAsThisDinner) {
             spinner.show();
             this.selectedDish = await model.getDish(model.getDetailedDinner());
+            if(!this.selectedDish){
+                spinner.hide(); //Something went wrong when fetching dish;
+                this.selectedDish = {id:0};
+                return;
+            }
             spinner.hide();
         }
 

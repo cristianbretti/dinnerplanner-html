@@ -40,6 +40,9 @@ var DishSearchView = function (container, model, gc) {
         var spinner = new SpinnerView(this.resultContainer);
         var result = await model.getAllDishes(this.typeFilter.val(), this.textFilter.val());
         spinner.hide();
+        if(!result){
+            return;
+        }
         this.dishItems = [];
         this.dishItemControllers = [];
         
